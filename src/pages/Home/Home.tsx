@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Arrivals from "../components/Arrivals";
-import Categories from "../components/Categories";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import { features } from "../constants/categories";
+import Products from "../../components/ProductsList";
+import Categories from "../../components/Categories";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
+import { features } from "../../constants/mockData";
 import {
   Header,
   Hero,
@@ -19,17 +19,17 @@ import {
 const Home: React.FC = () => {
   return (
     <>
+      <Navbar />
       <Header>
-        <Navbar />
         <Hero>
-          <h1>We offer the best Products for your skin</h1>
+          <h1>We offer the best Tech Products</h1>
           <Link to="/">
             <span>Shop Now</span>
           </Link>
         </Hero>
       </Header>
       <Categories />
-      <Arrivals />
+      <Products name="New Arrivals" category="arrivals" />
       <FeatContainer>
         <h2>Why people choose us</h2>
         <Features>

@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Navbar: React.FC<{}> = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.scrollTo(0, 0);
+    if (window.document.location.pathname === "/") {
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    } else {
+      setShow(true);
+    }
   }, []);
 
   const handleScroll = () => {
@@ -16,8 +22,10 @@ const Navbar: React.FC<{}> = () => {
   return (
     <MainContainer sticky={show}>
       <Container sticky={show}>
-        <img src="./logo512.png" alt="" width="44px" />
-        <h1>Logo</h1>
+        <Link to="/">
+          <img src={"/logo512.png"} alt="" width="44px" />
+          <h1>Logo</h1>
+        </Link>
         <input type="text" placeholder="Search items..." />
         <Icons>
           <svg
@@ -77,6 +85,11 @@ const Container = styled.div<{ sticky: Boolean }>`
   max-width: 126rem;
   margin: 0 auto;
   height: 10rem;
+
+  a {
+    display: flex;
+    align-items: center;
+  }
 
   h1 {
     font-size: 3rem;

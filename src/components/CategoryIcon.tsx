@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import _ from "lodash";
 
 interface props {
   name: string;
@@ -8,26 +10,28 @@ interface props {
 const CategoryIcon: React.FC<props> = ({ name }) => {
   return (
     <Container>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-        />
-      </svg>
-      <p>{name}</p>
+      <Link to={`/category/${_.kebabCase(name)}`}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+          />
+        </svg>
+        <p>{name}</p>
+      </Link>
     </Container>
   );
 };
@@ -35,30 +39,31 @@ const CategoryIcon: React.FC<props> = ({ name }) => {
 export default CategoryIcon;
 
 const Container = styled.div`
-  cursor: pointer;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: var(--gray);
-  border-radius: 1rem;
-  width: 12.8rem;
-  height: 12.8rem;
+  a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: var(--gray);
+    border-radius: 1rem;
+    width: 12.8rem;
+    height: 12.8rem;
 
-  :hover {
-    background: var(--gray-mid);
-  }
+    :hover {
+      background: var(--gray-mid);
+    }
 
-  svg {
-    width: 3rem;
-    height: 3rem;
-    color: var(--blue);
-  }
+    svg {
+      width: 3rem;
+      height: 3rem;
+      color: var(--blue);
+    }
 
-  p {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin: 0;
-    padding-top: 1.2rem;
+    p {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin: 0;
+      padding-top: 1.2rem;
+    }
   }
 `;

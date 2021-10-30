@@ -2,13 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Product: React.FC<{}> = () => {
+interface props {
+  id: string;
+  name: string;
+  price: number;
+}
+
+const Product: React.FC<props> = ({ id, name, price }) => {
   return (
     <Container>
-      <ProductWrapper></ProductWrapper>
+      <Link to={`/product/${id}`}>
+        <ProductWrapper></ProductWrapper>
+      </Link>
       <Details>
-        <h4>Sun Cream</h4>
-        <span>$20</span>
+        <h4>{name}</h4>
+        <span>${price}</span>
       </Details>
     </Container>
   );
@@ -17,21 +25,9 @@ const Product: React.FC<{}> = () => {
 export default Product;
 
 const Container = styled.div`
+  margin-top: 7rem;
   display: flex;
   flex-direction: column;
-  margin-top: 7rem;
-
-  a {
-    display: inline-flex;
-    align-items: center;
-    background: var(--light-blue);
-    color: var(--blue);
-    border-radius: 2rem;
-    height: 3.4rem;
-    padding: 0 2rem;
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
 `;
 
 const ProductWrapper = styled.div`

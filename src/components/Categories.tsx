@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { categories } from "../constants/categories";
+import { categories } from "../constants/mockData";
 import CategoryIcon from "./CategoryIcon";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
