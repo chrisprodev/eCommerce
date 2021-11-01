@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import _ from "lodash";
@@ -7,6 +6,7 @@ import ProductsList from "../../components/ProductsList";
 import Footer from "../../components/Footer";
 import Dropdown from "../../components/Dropdown";
 import { categories } from "../../constants/mockData";
+import { Header, Filters } from "./Category.Styles";
 
 interface categoryParams {
   category: string;
@@ -51,24 +51,3 @@ const Category: React.FC = () => {
 };
 
 export default Category;
-
-const Header = styled.header`
-  height: 32rem;
-  max-width: 126rem;
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-end;
-
-  h1 {
-    max-width: 44rem;
-    line-height: 5.6rem;
-  }
-`;
-
-const Filters = styled.section`
-  max-width: 126rem;
-  margin: 0 auto;
-  padding-top: 9rem;
-  display: flex;
-  justify-content: space-between;
-`;
