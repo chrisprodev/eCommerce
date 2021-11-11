@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Category from "./pages/Category/Category";
 import Product from "./pages/Product/Product";
+import Cart from "./pages/Cart/Cart";
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,9 @@ const App: React.FC = () => {
         </Route>
         <Route path="/product/:id">
           <Product />
+        </Route>
+        <Route path="/cart">
+          <Cart />
         </Route>
         <Route path="/">
           <Home />

@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import RelatedProducts from "../../components/RelatedProducts";
+import { Quantity } from "../../components/Quantity";
+import { productsData } from "../../constants/mockData";
 
 interface productParams {
   id: string;
@@ -11,8 +13,6 @@ interface productParams {
 
 const Product: React.FC = () => {
   const { id } = useParams<productParams>();
-
-  const features = [1, 2, 3, 4];
 
   return (
     <React.Fragment>
@@ -27,84 +27,44 @@ const Product: React.FC = () => {
           <MainImage></MainImage>
         </Images>
         <Details>
-          <h1>Product Name</h1>
           <div>
-            <Category>Category</Category>
+            <Category>{productsData[0].category}</Category>
           </div>
-          <Price>$499</Price>
+          <h1>{productsData[0].name}</h1>
+          <Price>${productsData[0].price}</Price>
           <ul>
-            <li>Feature #1</li>
-            <li>Feature #2</li>
-            <li>Feature #3</li>
+            {productsData[0].mainFeatures?.map((feat) => (
+              <li key={feat.id}>{feat.description}</li>
+            ))}
           </ul>
           <Actions>
             <span>.</span>
-            <span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="8.667"
-                height="14.505"
-                viewBox="0 0 8.667 14.505"
-              >
-                <path
-                  id="Path_6"
-                  data-name="Path 6"
-                  d="M2873.674,517.191l5.839,5.839,5.838-5.839"
-                  transform="translate(524.444 -2872.26) rotate(90)"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                />
-              </svg>
-              <p>12</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="8.667"
-                height="14.505"
-                viewBox="0 0 8.667 14.505"
-              >
-                <path
-                  id="Path_7"
-                  data-name="Path 7"
-                  d="M2873.674,517.191l5.839,5.839,5.838-5.839"
-                  transform="translate(-515.777 2886.765) rotate(-90)"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                />
-              </svg>
-            </span>
-            <button>Add to cart</button>
+            <Quantity />
+            <Link to="/cart">
+              <button>Add to cart</button>
+            </Link>
           </Actions>
         </Details>
       </Header>
       {/* Features */}
       <FeatContainer>
-        {features.map((feat) => (
+        {productsData[0].featules?.map((feat) => (
           <Feat>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="60"
-              height="60"
-              viewBox="0 0 60 60"
-            >
-              <circle
-                id="Ellipse_15"
-                data-name="Ellipse 15"
-                cx="30"
-                cy="30"
-                r="30"
-                fill="#f6f7fb"
-              />
-            </svg>
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+                <circle
+                  id="Ellipse_15"
+                  data-name="Ellipse 15"
+                  cx="30"
+                  cy="30"
+                  r="30"
+                  fill="#f6f7fb"
+                />
+              </svg>
+            </div>
             <FeatDetail>
-              <h4>Natural</h4>
-              <p>
-                All of out products go through very strict inspection before we
-                dispatch them.
-              </p>
+              <h4>{feat.title}</h4>
+              <p>{feat.description}</p>
             </FeatDetail>
           </Feat>
         ))}
@@ -163,9 +123,8 @@ const Details = styled.div`
   }
 
   ul {
-    margin: 2rem 0 0 0;
-    padding: 0;
-    list-style: none;
+    margin: 3rem 0 0 0;
+    padding: 0 0 0 2rem;
 
     li {
       font-size: 2.2rem;
@@ -182,16 +141,16 @@ const Price = styled.p`
 `;
 
 const Category = styled.span`
-  margin-top: 2rem;
+  margin-bottom: 1rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  height: 5rem;
+  font-size: 1.4rem;
+  height: 3.4rem;
   background: var(--light-blue);
   color: var(--blue);
   border-radius: 6rem;
-  padding: 0 4rem;
+  padding: 0 2rem;
   text-transform: uppercase;
   font-weight: 700;
 `;
@@ -201,13 +160,6 @@ const Actions = styled.div`
   align-items: center;
   margin-top: 3rem;
   user-select: none;
-
-  svg {
-    cursor: pointer;
-    :hover {
-      color: var(--blue);
-    }
-  }
 
   span {
     display: flex;
@@ -220,13 +172,6 @@ const Actions = styled.div`
     border: solid 2px var(--gray);
     border-radius: 4rem;
     padding: 0 2.4rem;
-
-    p {
-      margin: 0 4rem;
-      font-size: 2rem;
-      font-weight: 700;
-      text-align: center;
-    }
   }
 
   button {
@@ -246,19 +191,21 @@ const Actions = styled.div`
 const FeatContainer = styled.section`
   max-width: 126rem;
   margin: 0 auto;
-  columns: 2 auto;
   margin-top: 10rem;
 `;
 
 const Feat = styled.div`
   padding-top: 8rem;
   display: flex;
+
   svg {
-    margin-right: 3.2rem;
+    width: 6rem;
+    height: 6rem;
   }
 `;
 
 const FeatDetail = styled.div`
+  margin-left: 3.2rem;
   h4 {
     margin: 0;
     font-size: 2.6rem;
@@ -267,6 +214,5 @@ const FeatDetail = styled.div`
   p {
     font-size: 2rem;
     line-height: 3.2rem;
-    max-width: 50rem;
   }
 `;
