@@ -34,11 +34,45 @@ const Product: React.FC = () => {
           <Price>${productsData[0].price}</Price>
           <ul>
             {productsData[0].mainFeatures?.map((feat) => (
-              <li key={feat.id}>{feat.description}</li>
+              <li key={feat.id}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                >
+                  <circle
+                    id="Ellipse_30"
+                    data-name="Ellipse 30"
+                    cx="7"
+                    cy="7"
+                    r="7"
+                    fill="currentColor"
+                  />
+                </svg>
+
+                {feat.description}
+              </li>
             ))}
           </ul>
+          <Note>
+            All of out products go through very stric inspection before we
+            dispatch them.
+          </Note>
           <Actions>
-            <span>.</span>
+            <Like>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Like>
             <Quantity />
             <Link to="/cart">
               <button>Add to cart</button>
@@ -50,18 +84,6 @@ const Product: React.FC = () => {
       <FeatContainer>
         {productsData[0].featules?.map((feat) => (
           <Feat>
-            <div>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
-                <circle
-                  id="Ellipse_15"
-                  data-name="Ellipse 15"
-                  cx="30"
-                  cy="30"
-                  r="30"
-                  fill="#f6f7fb"
-                />
-              </svg>
-            </div>
             <FeatDetail>
               <h4>{feat.title}</h4>
               <p>{feat.description}</p>
@@ -119,24 +141,39 @@ const Details = styled.div`
   flex-direction: column;
   margin-left: 7.4rem;
   h1 {
-    font-size: 4rem;
+    font-size: 3.2rem;
   }
 
   ul {
     margin: 3rem 0 0 0;
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 0rem;
+    list-style: none;
 
     li {
-      font-size: 2.2rem;
+      display: flex;
+      align-items: center;
+      color: var(--black-mid);
+      font-size: 2rem;
       line-height: 3.6rem;
+
+      svg {
+        height: 1rem;
+        margin-right: 1rem;
+      }
     }
   }
+`;
+
+const Note = styled.p`
+  font-size: 1.6rem;
+  line-height: 2.8rem;
+  color: var(--purple);
 `;
 
 const Price = styled.p`
   margin: 0;
   padding-top: 2rem;
-  font-size: 3.4rem;
+  font-size: 2.4rem;
   font-weight: 600;
 `;
 
@@ -147,8 +184,8 @@ const Category = styled.span`
   align-items: center;
   font-size: 1.4rem;
   height: 3.4rem;
-  background: var(--light-blue);
-  color: var(--blue);
+  background: var(--gray-mid);
+  color: var(--purple);
   border-radius: 6rem;
   padding: 0 2rem;
   text-transform: uppercase;
@@ -161,30 +198,45 @@ const Actions = styled.div`
   margin-top: 3rem;
   user-select: none;
 
-  span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 2rem;
-    font-size: 2.4rem;
-    font-weight: 600;
-    height: 5.4rem;
-    border: solid 2px var(--gray);
-    border-radius: 4rem;
-    padding: 0 2.4rem;
-  }
-
   button {
     cursor: pointer;
     border-radius: 4rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     height: 5.4rem;
-    background: var(--black);
+    background: var(--purple);
     color: #ffffff;
     padding: 0 4rem;
     white-space: nowrap;
     border: none;
+
+    :hover {
+      background: var(--purple-hover);
+    }
+  }
+`;
+
+const Like = styled.span`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2rem;
+  height: 5.4rem;
+  width: 5.4rem;
+  background: var(--gray);
+  border-radius: 5.4rem;
+
+  svg {
+    height: 2.4rem;
+    color: var(--black);
+  }
+
+  :hover {
+    background: var(--gray-mid);
+    svg {
+      color: var(--purple);
+    }
   }
 `;
 
@@ -205,13 +257,13 @@ const Feat = styled.div`
 `;
 
 const FeatDetail = styled.div`
-  margin-left: 3.2rem;
   h4 {
     margin: 0;
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     font-weight: 600;
   }
   p {
+    color: var(--black-mid);
     font-size: 2rem;
     line-height: 3.2rem;
   }

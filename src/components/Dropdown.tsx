@@ -10,7 +10,10 @@ const Dropdown: React.FC<props> = ({ title, list }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <MainContainer onClick={() => setShowDropdown(!showDropdown)}>
+    <MainContainer
+      onClick={() => setShowDropdown(!showDropdown)}
+      open={showDropdown}
+    >
       <p>{title}</p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +47,7 @@ const Dropdown: React.FC<props> = ({ title, list }) => {
 
 export default Dropdown;
 
-const MainContainer = styled.div`
+const MainContainer = styled.div<{ open: boolean }>`
   cursor: pointer;
   position: relative;
   display: flex;
@@ -52,18 +55,28 @@ const MainContainer = styled.div`
   justify-content: space-between;
 
   width: 16rem;
-  height: 6.4rem;
-  padding: 0 3rem;
-  border: solid 2px var(--gray);
-  border-radius: 5rem;
+  height: 4.5rem;
+  padding: 0 1.6rem;
+  border-style: solid;
+  border-width: 2px;
+  border-color: ${(props) => (props.open ? "var(--purple)" : "var(--gray)")};
+  border-radius: 1rem;
+  transition: border-color 100ms ease;
+
+  :hover {
+    border-color: ${(props) =>
+      props.open ? "var(--purple)" : "var(--gray-mid)"};
+  }
 
   p {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 600;
     margin: 0;
   }
 
   svg {
+    transition: all 400ms ease;
+    transform: ${(props) => (props.open ? "rotate(180deg)" : "rotate(0deg)")};
     margin-top: 0.5rem;
   }
 `;
@@ -75,7 +88,7 @@ const DropdownMenu = styled.div`
   background: white;
   border: solid 2px var(--gray);
   border-radius: 1rem;
-  width: 22.4rem;
+  width: 19rem;
   white-space: pre-wrap;
   display: flex;
   flex-direction: column;
@@ -87,16 +100,18 @@ const DropdownMenu = styled.div`
 
   ul {
     margin: 0;
-    padding: 1rem 0;
+    padding: 0rem 0;
     list-style: none;
 
     li {
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: 600;
-      padding-left: 3rem;
-      line-height: 4rem;
+      padding-left: 1.6rem;
+      line-height: 4.6rem;
+
       :hover {
-        color: var(--blue);
+        color: var(--purple);
+        background: var(--gray-mid);
       }
     }
   }

@@ -25,7 +25,7 @@ const Product: React.FC<props> = ({ id, name, price }) => {
 export default Product;
 
 const Container = styled.div`
-  margin-top: 7rem;
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
 `;
@@ -48,6 +48,7 @@ const Details = styled.div`
     padding-top: 2rem;
   }
   span {
+    color: var(--black-mid);
     padding-top: 1rem;
   }
 `;

@@ -22,7 +22,7 @@ const Home: React.FC = () => {
       <Navbar />
       <Header>
         <Hero>
-          <h1>We offer the best Tech Products</h1>
+          <h1>Create your perfect sound system</h1>
           <Link to="/">
             <span>Shop Now</span>
           </Link>
@@ -35,21 +35,7 @@ const Home: React.FC = () => {
         <Features>
           {features.map((feat) => (
             <Feat key={feat.title}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="62"
-                height="62"
-                viewBox="0 0 62 62"
-              >
-                <circle
-                  id="Ellipse_7"
-                  data-name="Ellipse 7"
-                  cx="31"
-                  cy="31"
-                  r="31"
-                  fill="#f6f7fb"
-                />
-              </svg>
+              <span>{feat.icon}</span>
               <h4>{feat.title}</h4>
               <p>{feat.description}</p>
             </Feat>

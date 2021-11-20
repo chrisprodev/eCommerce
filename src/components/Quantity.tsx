@@ -61,7 +61,7 @@ const Wrapper = styled.span`
   svg {
     cursor: pointer;
     :hover {
-      color: var(--blue);
+      color: var(--purple);
     }
   }
 
@@ -72,7 +72,7 @@ const Wrapper = styled.span`
   font-size: 2.4rem;
   font-weight: 600;
   height: 5.4rem;
-  border: solid 2px var(--gray);
+  background: var(--gray);
   border-radius: 4rem;
   padding: 0 2.4rem;
 

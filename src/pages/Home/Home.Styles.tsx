@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-  height: 71rem;
-  background: var(--gray);
+  height: 80rem;
+  background-image: url("images/banner@2x.png"); /* The image used */
+  background-color: var(--black);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   align-items: center;
 `;
@@ -12,28 +16,33 @@ export const Hero = styled.div`
   max-width: 126rem;
   margin: 0 auto;
   padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   h1 {
-    max-width: 44rem;
+    max-width: 61.4rem;
     line-height: 5.6rem;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
   }
 
   a {
     color: #ffffff;
-    background: var(--black);
+    background: var(--purple);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5.4rem;
-    height: 5.4rem;
-    width: 18rem;
-    font-size: 2rem;
-    font-weight: 600;
+    height: 4.4rem;
+    width: 14rem;
+    font-size: 1.8rem;
     margin-top: 3.6rem;
     transition: all 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
 
     :hover {
-      background: var(--blue);
+      background: var(--purple-hover);
     }
   }
 `;
@@ -52,7 +61,7 @@ export const FeatContainer = styled.section`
 export const Features = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 8rem;
+  margin-top: 12rem;
   width: 90%;
 `;
 
@@ -61,25 +70,41 @@ export const Feat = styled.div`
   flex-direction: column;
   align-items: center;
 
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    height: 6rem;
+    background: var(--gray-mid);
+    border-radius: 6rem;
+
+    svg {
+      width: 3rem;
+      height: 3rem;
+      color: var(--purple);
+    }
+  }
+
   h4 {
     margin-bottom: 0;
     margin-top: 4.5rem;
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     font-weight: 600;
   }
 
   p {
+    color: var(--black-mid);
     margin-bottom: 0;
     margin-top: 2.4rem;
     font-size: 2rem;
     line-height: 3.2rem;
     text-align: center;
-    max-width: 27rem;
+    max-width: 28rem;
   }
 `;
 
 export const Testimonials = styled.section`
-  //width: 100%;
   height: 68rem;
   margin-top: 19rem;
   margin-bottom: 0;
@@ -101,11 +126,12 @@ export const Testimonial = styled.div`
   h5 {
     margin-bottom: 0;
     margin-top: 4.5rem;
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     font-weight: 600;
   }
 
   p {
+    color: var(--black-mid);
     margin-bottom: 0;
     margin-top: 2.4rem;
     font-size: 2rem;
@@ -130,10 +156,10 @@ export const NavButtons = styled.div`
     border-radius: 5rem;
 
     :hover {
-      border-color: var(--blue);
+      border-color: var(--purple);
       svg {
         path {
-          stroke: var(--blue);
+          stroke: var(--purple);
         }
       }
     }

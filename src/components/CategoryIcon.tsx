@@ -1,35 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import _ from "lodash";
+import NewIcon from "../icons/NewIcon";
+import AudioIcon from "../icons/AudioIcon";
+import DroneIcon from "../icons/DroneIcon";
+import ComputerIcon from "../icons/ComputerIcon";
+import TvIcon from "../icons/TvIcon";
+import MobileIcon from "../icons/MobileIcon";
+import CameraIcon from "../icons/CameraIcon";
+import StarIcon from "../icons/StarIcon";
 
 interface props {
   name: string;
+  icon: string;
 }
 
 const CategoryIcon: React.FC<props> = ({ name }) => {
+  const [hover, setHover] = useState(false);
   return (
     <Container>
-      <Link to={`/category/${_.kebabCase(name)}`}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-        </svg>
+      <Link
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        to={`/category/${_.kebabCase(name)}`}
+      >
+        {name === "New Arrivals" && <NewIcon hover={hover} />}
+        {name === "Featured" && <StarIcon hover={hover} />}
+        {name === "Photography" && <CameraIcon hover={hover} />}
+        {name === "Computers" && <ComputerIcon hover={hover} />}
+        {name === "Entertaiment" && <TvIcon hover={hover} />}
+        {name === "Mobile" && <MobileIcon hover={hover} />}
+        {name === "Drones" && <DroneIcon hover={hover} />}
+        {name === "Audio" && <AudioIcon hover={hover} />}
         <p>{name}</p>
       </Link>
     </Container>
@@ -48,22 +51,22 @@ const Container = styled.div`
     border-radius: 1rem;
     width: 12.8rem;
     height: 12.8rem;
+    transition: all 150ms ease;
 
     :hover {
       background: var(--gray-mid);
+      color: var(--purple);
     }
 
     svg {
-      width: 3rem;
       height: 3rem;
-      color: var(--blue);
     }
 
     p {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 600;
       margin: 0;
-      padding-top: 1.2rem;
+      padding-top: 2.2rem;
     }
   }
 `;

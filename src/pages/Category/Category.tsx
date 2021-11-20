@@ -38,7 +38,11 @@ const Category: React.FC = () => {
     <React.Fragment>
       <Navbar />
       <Header>
-        <h1>{`Explore ${_.startCase(_.capitalize(category))} Products`}</h1>
+        <h2>
+          {category === "new-arrivals"
+            ? `Explorer ${_.startCase(_.capitalize(category))}`
+            : `Explorer ${_.startCase(_.capitalize(category))} Products`}
+        </h2>
       </Header>
       <Filters>
         <Dropdown title="Category" list={categories} />

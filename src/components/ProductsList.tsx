@@ -66,15 +66,19 @@ const CenterBTN = styled.div`
 
   a {
     color: #ffffff;
-    background: var(--black);
+    background: var(--purple);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5.4rem;
-    height: 5.4rem;
-    width: 18rem;
-    font-size: 2rem;
-    font-weight: 600;
+    height: 4.4rem;
+    width: 14rem;
+    font-size: 1.8rem;
     margin-top: 3.6rem;
+    transition: all 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    :hover {
+      background: var(--purple-hover);
+    }
   }
 `;

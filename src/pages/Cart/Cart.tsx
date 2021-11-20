@@ -11,7 +11,7 @@ const Cart: React.FC = () => {
     <React.Fragment>
       <Navbar />
       <Header>
-        <h1>Shopping Cart</h1>
+        <h2>Shopping Cart</h2>
         <span>Clear all</span>
       </Header>
       <CartWrapper>
@@ -20,15 +20,15 @@ const Cart: React.FC = () => {
             <Item>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="159"
-                height="159"
-                viewBox="0 0 159 159"
+                width="144"
+                height="144"
+                viewBox="0 0 144 144"
               >
                 <rect
                   id="Rectangle_21"
                   data-name="Rectangle 21"
-                  width="159"
-                  height="159"
+                  width="144"
+                  height="144"
                   rx="10"
                   fill="#f6f7fb"
                 />
@@ -98,16 +98,18 @@ const Header = styled.header`
     align-items: center;
     justify-content: center;
     margin-right: 2rem;
-    font-size: 2.4rem;
+    font-size: 1.6rem;
     font-weight: 600;
-    height: 5.4rem;
-    border: solid 2px var(--gray);
+    height: 4.4rem;
+    background: var(--gray);
+    color: #808588;
     border-radius: 4rem;
-    padding: 0 2.4rem;
+    padding: 0 1.6rem;
+    transition: all 100ms ease;
 
     :hover {
-      border: solid 2px var(--gray-mid);
-      background: var(--gray-mid);
+      background: #ffdfdf;
+      color: #f15c5c;
     }
   }
 `;
@@ -151,20 +153,20 @@ const CartDetails = styled.div`
   h5 {
     margin: 0 0 3rem 0;
     line-height: 4.6rem;
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     font-weight: 600;
   }
 
   a {
     color: #ffffff;
-    background: var(--black);
+    background: var(--purple);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5.4rem;
-    height: 5.4rem;
+    height: 4.4rem;
     width: 100%;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     margin-top: 6rem;
   }
@@ -187,7 +189,7 @@ const ItemDesc = styled.div`
   h5 {
     margin: 0;
     line-height: 4.6rem;
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     font-weight: 600;
   }
 `;
@@ -204,27 +206,34 @@ const DeleteIcon = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 100ms ease;
 
   :hover {
-    background: var(--gray-mid);
+    background: #ffdfdf;
+    svg {
+      color: #f15c5c;
+    }
   }
 
   svg {
     height: 2rem;
     width: 2rem;
-    color: #a1a1a1;
+    color: #808588;
+    transition: all 100ms ease;
   }
 `;
 
 const Price = styled.div`
   font-size: 2rem;
   margin-bottom: 2rem;
+  color: var(--black-mid);
 `;
 
 const Subtotal = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
+  color: var(--black-mid);
 
   span {
     font-size: 2rem;

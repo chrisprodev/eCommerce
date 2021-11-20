@@ -39,7 +39,7 @@ const Categories: React.FC = () => {
                 d="M1500.608,988.613l-5.986,5.987,5.986,5.986"
                 transform="translate(-1493.208 -987.199)"
                 fill="none"
-                stroke="#000"
+                stroke="currentColor"
                 strokeLinecap="round"
                 strokeWidth="2"
               />
@@ -62,7 +62,7 @@ const Categories: React.FC = () => {
                 d="M1500.608,988.613l-5.986,5.987,5.986,5.986"
                 transform="translate(1502.022 1002) rotate(180)"
                 fill="none"
-                stroke="#000"
+                stroke="currentColor"
                 strokeLinecap="round"
                 strokeWidth="2"
               />
@@ -73,7 +73,11 @@ const Categories: React.FC = () => {
       <HorizontalScroll>
         <Slider ref={sliderRef} {...settings}>
           {categories.map((category) => (
-            <CategoryIcon key={category.id} name={category.name} />
+            <CategoryIcon
+              key={category.id}
+              name={category.name}
+              icon={category.icon}
+            />
           ))}
         </Slider>
       </HorizontalScroll>
@@ -110,9 +114,11 @@ const NavButtons = styled.div`
     width: 4.7rem;
     height: 4.7rem;
     border-radius: 5rem;
+    transition: all 150ms ease;
 
     :hover {
       background: var(--gray-mid);
+      color: var(--purple);
     }
   }
 
@@ -122,5 +128,5 @@ const NavButtons = styled.div`
 `;
 
 const HorizontalScroll = styled.div`
-  margin-top: 7rem;
+  margin-top: 4rem;
 `;
