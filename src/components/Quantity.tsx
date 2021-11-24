@@ -1,23 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-export const Quantity: React.FC = () => {
-  const [count, setCount] = useState(1);
+interface Props {
+  onIncrement: () => void;
+  onDecrement: () => void;
+  value: number;
+}
 
-  const increment = () => {
-    setCount((count) => count + 1);
-  };
-
-  const decrement = () => {
-    if (count > 1) {
-      setCount((count) => count - 1);
-    }
-  };
-
+export const Quantity: React.FC<Props> = ({
+  value,
+  onIncrement,
+  onDecrement,
+}) => {
   return (
     <Wrapper>
       <svg
-        onClick={decrement}
+        onClick={onDecrement}
         xmlns="http://www.w3.org/2000/svg"
         width="8.667"
         height="14.505"
@@ -34,9 +32,9 @@ export const Quantity: React.FC = () => {
           strokeWidth="2"
         />
       </svg>
-      <p>{count}</p>
+      <p>{value}</p>
       <svg
-        onClick={increment}
+        onClick={onIncrement}
         xmlns="http://www.w3.org/2000/svg"
         width="8.667"
         height="14.505"

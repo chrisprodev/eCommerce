@@ -35,6 +35,7 @@ export const Hero = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 5.4rem;
+    font-weight: 600;
     height: 4.4rem;
     width: 14rem;
     font-size: 1.8rem;

@@ -23,7 +23,7 @@ const CategoryIcon: React.FC<props> = ({ name }) => {
       <Link
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        to={`/category/${_.kebabCase(name)}`}
+        to={`/products`}
       >
         {name === "New Arrivals" && <NewIcon hover={hover} />}
         {name === "Featured" && <StarIcon hover={hover} />}

@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { selectTotalItems } from "../features/app/appSlice";
+import { useAppSelector } from "../store/hooks";
 
 const Navbar: React.FC<{}> = () => {
   const [show, setShow] = useState(false);
+  const [animation, setAnimation] = useState(false);
+
+  const items = useAppSelector(selectTotalItems);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     if (window.document.location.pathname === "/") {
+      setAnimation(true);
       window.addEventListener("scroll", handleScroll);
       return () => window.removeEventListener("scroll", handleScroll);
     } else {
@@ -20,27 +26,49 @@ const Navbar: React.FC<{}> = () => {
   };
 
   return (
-    <MainContainer sticky={show}>
-      <Container sticky={show}>
+    <MainContainer sticky={show} animation={animation}>
+      <Container sticky={show} animation={animation}>
         <Link to="/">
-          <img src={"/logo512.png"} alt="" width="44px" />
-          <h1>Logo</h1>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="114"
+            height="35"
+            viewBox="0 0 114 35"
+          >
+            <text
+              id="T-Market"
+              transform="translate(0 28)"
+              fill="currentColor"
+              font-size="26"
+              font-family="SegoeUI-Bold, Segoe UI"
+              font-weight="700"
+            >
+              <tspan y="0" fill="currentColor">
+                Market
+              </tspan>
+            </text>
+          </svg>
         </Link>
         <input type="text" placeholder="Search items..." />
         <Icons>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-            />
-          </svg>
+          <Link to="/cart">
+            <CartContainer>
+              {items > 0 && <CartItems>{items}</CartItems>}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+            </CartContainer>
+          </Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -62,29 +90,33 @@ const Navbar: React.FC<{}> = () => {
 
 export default Navbar;
 
-const MainContainer = styled.nav<{ sticky: Boolean }>`
+const MainContainer = styled.nav<{ sticky: boolean; animation: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 999;
   transition: all 450ms ease;
-  box-shadow: ${(props) =>
-    props.sticky ? "34px 34px 74px 0 rgb(56 50 124 / 8%)" : "none"};
-  -webkit-box-shadow: ${(props) =>
-    props.sticky ? "34px 34px 74px 0 rgb(56 50 124 / 8%)" : "none"};
-  -moz-box-shadow: ${(props) =>
-    props.sticky ? "34px 34px 74px 0 rgb(56 50 124 / 8%)" : "none"};
   background-color: ${(props) => (props.sticky ? "#ffffff" : "transparent")};
+  border-bottom: ${(props) =>
+    props.animation
+      ? props.sticky
+        ? "solid 2px var(--gray)"
+        : "none"
+      : "solid 2px var(--gray)"};
 `;
 
-const Container = styled.div<{ sticky: Boolean }>`
+const Container = styled.div<{ sticky: boolean; animation: boolean }>`
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 126rem;
   margin: 0 auto;
-  height: 10rem;
+  transition: all 450ms ease;
+  height: ${(props) =>
+    props.animation ? (props.sticky ? "8rem" : "10rem") : "8rem"};
 
   a {
     display: flex;
@@ -103,13 +135,23 @@ const Container = styled.div<{ sticky: Boolean }>`
     padding: 0rem 2rem;
     border-radius: 5rem;
     border: none;
-    margin-left: 2rem;
-    background: ${(props) => (props.sticky ? "var(--gray)" : "#ffffff")};
+    background: ${(props) =>
+      props.animation
+        ? props.sticky
+          ? "var(--gray)"
+          : "#ffffff"
+        : "var(--gray)"};
     transition: all 450ms ease;
 
     :focus {
       outline: none;
     }
+  }
+
+  svg {
+    cursor: pointer;
+    color: ${(props) => props.animation && !props.sticky && "#ffffff"};
+    transition: all 450ms ease;
   }
 `;
 
@@ -117,7 +159,28 @@ const Icons = styled.div`
   display: flex;
   svg {
     margin-left: 2rem;
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 2.6rem;
+    height: 2.6rem;
   }
+`;
+
+const CartContainer = styled.div`
+  position: relative;
+`;
+
+const CartItems = styled.span`
+  position: absolute;
+  top: -0.5rem;
+  right: -1rem;
+
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--purple);
+  border-radius: 2rem;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
 `;

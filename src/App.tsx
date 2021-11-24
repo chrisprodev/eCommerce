@@ -9,7 +9,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/category/:category">
+        <Route path="/products">
           <Category />
         </Route>
         <Route path="/product/:id">

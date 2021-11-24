@@ -23,7 +23,7 @@ const Home: React.FC = () => {
       <Header>
         <Hero>
           <h1>Create your perfect sound system</h1>
-          <Link to="/">
+          <Link to="/category/audio">
             <span>Shop Now</span>
           </Link>
         </Hero>

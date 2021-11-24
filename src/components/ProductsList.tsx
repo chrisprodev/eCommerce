@@ -33,7 +33,7 @@ const ProductsList: React.FC<props> = ({ name, category }) => {
       </ProductsWrapper>
       {isHome && (
         <CenterBTN>
-          <Link to="/">
+          <Link to="/category/new-arrivals">
             <span>View all</span>
           </Link>
         </CenterBTN>
@@ -50,7 +50,7 @@ const Container = styled.section<{ padding: boolean }>`
   width: 100%;
   max-width: 126rem;
   margin: 0 auto;
-  padding-top: ${(props) => props.padding && "19rem"};
+  padding-top: ${(props) => props.padding && "12rem"};
 `;
 
 const ProductsWrapper = styled.div`
@@ -71,6 +71,7 @@ const CenterBTN = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 5.4rem;
+    font-weight: 600;
     height: 4.4rem;
     width: 14rem;
     font-size: 1.8rem;

@@ -8,13 +8,14 @@ interface props {
 
 const Dropdown: React.FC<props> = ({ title, list }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [option, setOption] = useState("");
 
   return (
     <MainContainer
       onClick={() => setShowDropdown(!showDropdown)}
       open={showDropdown}
     >
-      <p>{title}</p>
+      <p>{option === "" ? title : option}</p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="14.505"
@@ -36,7 +37,9 @@ const Dropdown: React.FC<props> = ({ title, list }) => {
         <DropdownMenu>
           <ul>
             {list.map((element) => (
-              <li key={element.id}>{element.name}</li>
+              <li onClick={() => setOption(element.name)} key={element.id}>
+                {element.name}
+              </li>
             ))}
           </ul>
         </DropdownMenu>

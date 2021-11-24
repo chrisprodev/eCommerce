@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import RelatedProducts from "../../components/RelatedProducts";
-import { Quantity } from "../../components/Quantity";
 import { productsData } from "../../constants/mockData";
+import { ProductActions } from "../../components/ProductActions";
 
 interface productParams {
   id: string;
@@ -59,25 +59,11 @@ const Product: React.FC = () => {
             All of out products go through very stric inspection before we
             dispatch them.
           </Note>
-          <Actions>
-            <Like>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </Like>
-            <Quantity />
-            <Link to="/cart">
-              <button>Add to cart</button>
-            </Link>
-          </Actions>
+          <ProductActions
+            id={id}
+            name={productsData[0].name}
+            price={productsData[0].price}
+          />
         </Details>
       </Header>
       {/* Features */}
@@ -105,7 +91,7 @@ const Header = styled.header`
   align-items: center;
   max-width: 126rem;
   margin: 0 auto;
-  padding-top: 30rem;
+  padding-top: 16rem;
 `;
 
 const Images = styled.div`
@@ -190,54 +176,6 @@ const Category = styled.span`
   padding: 0 2rem;
   text-transform: uppercase;
   font-weight: 700;
-`;
-
-const Actions = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 3rem;
-  user-select: none;
-
-  button {
-    cursor: pointer;
-    border-radius: 4rem;
-    font-size: 1.8rem;
-    font-weight: 600;
-    height: 5.4rem;
-    background: var(--purple);
-    color: #ffffff;
-    padding: 0 4rem;
-    white-space: nowrap;
-    border: none;
-
-    :hover {
-      background: var(--purple-hover);
-    }
-  }
-`;
-
-const Like = styled.span`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 2rem;
-  height: 5.4rem;
-  width: 5.4rem;
-  background: var(--gray);
-  border-radius: 5.4rem;
-
-  svg {
-    height: 2.4rem;
-    color: var(--black);
-  }
-
-  :hover {
-    background: var(--gray-mid);
-    svg {
-      color: var(--purple);
-    }
-  }
 `;
 
 const FeatContainer = styled.section`
