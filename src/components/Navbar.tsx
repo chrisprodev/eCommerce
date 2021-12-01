@@ -39,9 +39,9 @@ const Navbar: React.FC<{}> = () => {
               id="T-Market"
               transform="translate(0 28)"
               fill="currentColor"
-              font-size="26"
-              font-family="SegoeUI-Bold, Segoe UI"
-              font-weight="700"
+              fontSize="26"
+              fontFamily="SegoeUI-Bold, Segoe UI"
+              fontWeight="700"
             >
               <tspan y="0" fill="currentColor">
                 Market

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Products from "../../components/ProductsList";
+import ProductsList from "../../components/ProductsList";
 import Categories from "../../components/Categories";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
@@ -29,7 +29,7 @@ const Home: React.FC = () => {
         </Hero>
       </Header>
       <Categories />
-      <Products name="New Arrivals" category="arrivals" />
+      <ProductsList name="New Arrivals" categoryID={4} />
       <FeatContainer>
         <h2>Why people choose us</h2>
         <Features>

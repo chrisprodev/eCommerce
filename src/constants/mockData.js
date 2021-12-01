@@ -134,7 +134,7 @@ export const productsData = [
         description: "5-Axis SteadyShot Image Stabilization",
       },
     ],
-    featules: [
+    features: [
       {
         id: 1,
         title: "Sensor",
@@ -220,5 +220,24 @@ export const shoppingCart = [
     id: "3",
     name: "Canon EOS R5",
     price: 3799,
+  },
+];
+
+export const sortBy = [
+  {
+    id: 1,
+    name: "Newest",
+  },
+  {
+    id: 2,
+    name: "Best Sellers",
+  },
+  {
+    id: 3,
+    name: "Low Price",
+  },
+  {
+    id: 4,
+    name: "High Price",
   },
 ];

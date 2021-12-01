@@ -32,7 +32,7 @@ const Cart: React.FC = () => {
     dispatch(resetCart());
   };
 
-  const handleRemoveItem = (itemID: number) => {
+  const handleRemoveItem = (itemID: string) => {
     dispatch(removeFromCart(itemID));
   };
 

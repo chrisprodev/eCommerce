@@ -5,36 +5,36 @@ import styled from "styled-components";
 interface props {
   id: string;
   name: string;
+  img: string;
   price: number;
 }
 
-const Product: React.FC<props> = ({ id, name, price }) => {
+const Product: React.FC<props> = ({ id, name, img, price }) => {
   return (
-    <Container>
+    <ProductContainer>
       <Link to={`/product/${id}`}>
-        <ProductWrapper></ProductWrapper>
+        <img className="product-container__img" src={img} alt={name} />
       </Link>
       <Details>
         <h4>{name}</h4>
         <span>${price}</span>
       </Details>
-    </Container>
+    </ProductContainer>
   );
 };
 
 export default Product;
 
-const Container = styled.div`
+const ProductContainer = styled.div`
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
-`;
 
-const ProductWrapper = styled.div`
-  height: 28rem;
-  width: 28rem;
-  background: var(--gray);
-  border-radius: 1rem;
+  .product-container__img {
+    height: auto;
+    width: 28rem;
+    border-radius: 1rem;
+  }
 `;
 
 const Details = styled.div`

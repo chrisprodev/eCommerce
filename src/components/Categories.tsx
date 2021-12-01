@@ -75,6 +75,7 @@ const Categories: React.FC = () => {
           {categories.map((category) => (
             <CategoryIcon
               key={category.id}
+              id={category.id}
               name={category.name}
               icon={category.icon}
             />

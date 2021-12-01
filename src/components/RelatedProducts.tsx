@@ -73,7 +73,13 @@ const RelatedProducts: React.FC = () => {
       <HorizontalScroll>
         <Slider ref={sliderRef} {...settings}>
           {productsData.map((product) => (
-            <Product id={product.id} name={product.name} price={129} />
+            <Product
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              img={product.image}
+              price={129}
+            />
           ))}
         </Slider>
       </HorizontalScroll>

@@ -1,35 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { productsData } from "../constants/mockData";
+import { fetchProductsList, selectProductList } from "../features/app/appSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import Product from "./Product";
 
 interface props {
   name?: string;
-  category: string;
+  categoryID: number;
 }
 
-const ProductsList: React.FC<props> = ({ name, category }) => {
+const ProductsList: React.FC<props> = ({ name, categoryID }) => {
   const [isHome, setIsHome] = useState(true);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(selectProductList);
 
   useEffect(() => {
     if (window.document.location.pathname !== "/") {
       setIsHome(false);
     }
-  }, []);
+    dispatch(fetchProductsList(categoryID));
+  }, [dispatch, categoryID]);
 
   return (
     <Container padding={isHome}>
       {name && <h2>{name}</h2>}
       <ProductsWrapper>
-        {productsData.map((product) => (
-          <Product
-            key={product.id}
-            id={product.id}
-            name={product.name}
-            price={product.price}
-          />
-        ))}
+        {products &&
+          products.map((product) => (
+            <Product
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              img={product.images[0]}
+              price={product.price}
+            />
+          ))}
       </ProductsWrapper>
       {isHome && (
         <CenterBTN>

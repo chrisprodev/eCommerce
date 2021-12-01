@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 interface props {
-  title: string;
+  value: string;
   list: { id: number; name: string }[];
+  onSetOption: (id: number) => void;
 }
 
-const Dropdown: React.FC<props> = ({ title, list }) => {
+const Dropdown: React.FC<props> = ({ value, list, onSetOption }) => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [option, setOption] = useState("");
 
   return (
     <MainContainer
       onClick={() => setShowDropdown(!showDropdown)}
       open={showDropdown}
     >
-      <p>{option === "" ? title : option}</p>
+      <p>{value}</p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="14.505"
@@ -37,7 +37,7 @@ const Dropdown: React.FC<props> = ({ title, list }) => {
         <DropdownMenu>
           <ul>
             {list.map((element) => (
-              <li onClick={() => setOption(element.name)} key={element.id}>
+              <li onClick={() => onSetOption(element.id)} key={element.id}>
                 {element.name}
               </li>
             ))}

@@ -10,20 +10,31 @@ import TvIcon from "../icons/TvIcon";
 import MobileIcon from "../icons/MobileIcon";
 import CameraIcon from "../icons/CameraIcon";
 import StarIcon from "../icons/StarIcon";
+import { useAppDispatch } from "../store/hooks";
+import { setCategory } from "../features/app/appSlice";
 
 interface props {
+  id: number;
   name: string;
   icon: string;
 }
 
-const CategoryIcon: React.FC<props> = ({ name }) => {
+const CategoryIcon: React.FC<props> = ({ id, name }) => {
   const [hover, setHover] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const handleSetCategory = () => {
+    dispatch(setCategory(id));
+  };
+
   return (
     <Container>
       <Link
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         to={`/products`}
+        onClick={handleSetCategory}
       >
         {name === "New Arrivals" && <NewIcon hover={hover} />}
         {name === "Featured" && <StarIcon hover={hover} />}

@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import RelatedProducts from "../../components/RelatedProducts";
-import { productsData } from "../../constants/mockData";
 import { ProductActions } from "../../components/ProductActions";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { fetchProduct, selectProduct } from "../../features/app/appSlice";
+import ProductImages from "../../components/ProductImages";
 
 interface productParams {
   id: string;
@@ -13,69 +15,72 @@ interface productParams {
 
 const Product: React.FC = () => {
   const { id } = useParams<productParams>();
+  const dispatch = useAppDispatch();
+  const productData = useAppSelector(selectProduct);
+
+  useEffect(() => {
+    dispatch(fetchProduct(id));
+  }, [id, dispatch]);
 
   return (
     <React.Fragment>
       <Navbar />
       <Header>
-        <Images>
-          <Thumbnails>
-            <span></span>
-            <span></span>
-            <span></span>
-          </Thumbnails>
-          <MainImage></MainImage>
-        </Images>
-        <Details>
-          <div>
-            <Category>{productsData[0].category}</Category>
-          </div>
-          <h1>{productsData[0].name}</h1>
-          <Price>${productsData[0].price}</Price>
-          <ul>
-            {productsData[0].mainFeatures?.map((feat) => (
-              <li key={feat.id}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                >
-                  <circle
-                    id="Ellipse_30"
-                    data-name="Ellipse 30"
-                    cx="7"
-                    cy="7"
-                    r="7"
-                    fill="currentColor"
-                  />
-                </svg>
-
-                {feat.description}
-              </li>
-            ))}
-          </ul>
-          <Note>
-            All of out products go through very stric inspection before we
-            dispatch them.
-          </Note>
-          <ProductActions
-            id={id}
-            name={productsData[0].name}
-            price={productsData[0].price}
-          />
-        </Details>
+        {productData && (
+          <>
+            <ProductImages images={productData.images} />
+            <Details>
+              <div>
+                <Category>{productData.category}</Category>
+              </div>
+              <h1>{productData.name}</h1>
+              <Price>${productData.price}</Price>
+              <ul>
+                {productData.mainFeatures.map((feat, i) => (
+                  <li key={i}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                    >
+                      <circle
+                        id="Ellipse_30"
+                        data-name="Ellipse 30"
+                        cx="7"
+                        cy="7"
+                        r="7"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    {feat}
+                  </li>
+                ))}
+              </ul>
+              <Note>
+                All of out products go through very stric inspection before we
+                dispatch them.
+              </Note>
+              <ProductActions
+                id={id}
+                name={productData.name}
+                price={productData.price}
+              />
+            </Details>
+          </>
+        )}
       </Header>
       {/* Features */}
       <FeatContainer>
-        {productsData[0].featules?.map((feat) => (
-          <Feat>
-            <FeatDetail>
-              <h4>{feat.title}</h4>
-              <p>{feat.description}</p>
-            </FeatDetail>
-          </Feat>
-        ))}
+        {productData &&
+          productData.features?.map((feat) => (
+            <Feat key={feat.title}>
+              <FeatDetail>
+                <h4>{feat.title}</h4>
+                <p>{feat.description}</p>
+              </FeatDetail>
+            </Feat>
+          ))}
       </FeatContainer>
       {/* Related Products Carousel */}
       <RelatedProducts />
@@ -92,34 +97,6 @@ const Header = styled.header`
   max-width: 126rem;
   margin: 0 auto;
   padding-top: 16rem;
-`;
-
-const Images = styled.div`
-  display: flex;
-`;
-
-const Thumbnails = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  span {
-    width: 15.2rem;
-    height: 15.2rem;
-    border-radius: 1rem;
-    background: var(--gray);
-    margin-top: 2.4rem;
-  }
-  span:first-child {
-    margin-top: 0;
-  }
-`;
-
-const MainImage = styled.div`
-  width: 50.4rem;
-  height: 50.4rem;
-  border-radius: 1rem;
-  background: var(--gray);
-  margin-left: 2.4rem;
 `;
 
 const Details = styled.div`

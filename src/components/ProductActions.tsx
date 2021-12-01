@@ -27,13 +27,14 @@ export const ProductActions: React.FC<Props> = ({ id, name, price }) => {
   };
 
   const handleAddToCart = () => {
-    const item = {
-      productID: parseInt(id),
-      productName: name,
-      quantity: count,
-      price: price,
-    };
-    dispatch(addToCart(item));
+    dispatch(
+      addToCart({
+        productID: id,
+        productName: name,
+        quantity: count,
+        price: price,
+      })
+    );
     history.push("/cart");
   };
 
