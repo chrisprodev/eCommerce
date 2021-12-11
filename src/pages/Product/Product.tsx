@@ -8,7 +8,6 @@ import { ProductActions } from "../../components/ProductActions";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { fetchProduct, selectProduct } from "../../features/app/appSlice";
 import ProductImages from "../../components/ProductImages";
-
 interface productParams {
   id: string;
 }

@@ -7,6 +7,8 @@ import {
   doc,
   query,
   where,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 import db from "../../firebase/firebaseConfig";
 import { productInterface } from "../../models/Products";
@@ -18,16 +20,30 @@ export const fetchProductsList = createAsyncThunk(
   "products/fetchProductsList",
   async (categoryID: number) => {
     try {
-      const q = query(
-        collection(db, "products"),
-        where("category", "==", categoryID)
-      );
+      if (categoryID === 1) {
+        const q = query(
+          collection(db, "products"),
+          orderBy("created"),
+          limit(12)
+        );
 
-      const querySnapshot = await getDocs(q);
-      return querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as productInterface[];
+        const querySnapshot = await getDocs(q);
+        return querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as productInterface[];
+      } else {
+        const q = query(
+          collection(db, "products"),
+          where("category", "==", categoryID)
+        );
+
+        const querySnapshot = await getDocs(q);
+        return querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as productInterface[];
+      }
     } catch (error) {
       console.log(error);
     }

@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { addToCart } from "../features/app/appSlice";
 import { useAppDispatch } from "../store/hooks";
 import { Quantity } from "./Quantity";
-
 interface Props {
   id: string;
   name: string;
@@ -45,7 +44,7 @@ export const ProductActions: React.FC<Props> = ({ id, name, price }) => {
 
   return (
     <Actions>
-      <Like>
+      {/* <Like>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -57,7 +56,7 @@ export const ProductActions: React.FC<Props> = ({ id, name, price }) => {
             clipRule="evenodd"
           />
         </svg>
-      </Like>
+      </Like> */}
       <Quantity
         value={count}
         onIncrement={handleIncrement}

@@ -19,6 +19,7 @@ const ProductsList: React.FC<props> = ({ name, categoryID }) => {
     if (window.document.location.pathname !== "/") {
       setIsHome(false);
     }
+
     dispatch(fetchProductsList(categoryID));
   }, [dispatch, categoryID]);
 

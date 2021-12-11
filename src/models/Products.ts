@@ -9,4 +9,5 @@ export interface productInterface {
     title: string;
     description: string;
   }[];
+  created: { nanoseconds: number; seconds: number };
 }

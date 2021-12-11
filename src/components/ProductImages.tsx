@@ -18,7 +18,7 @@ const ProductImages: React.FC<props> = ({ images }) => {
             }
             onClick={() => setMainImg(i)}
           >
-            <img src={image} alt={image} />
+            <img src={image} alt={image} width="50.4rem" height="auto" />
           </span>
         ))}
       </Thumbnails>
@@ -26,6 +26,8 @@ const ProductImages: React.FC<props> = ({ images }) => {
         className="images-container__main-image"
         src={images[mainImg]}
         alt={images[mainImg]}
+        width="100%"
+        height="auto"
       />
     </ImagesContainer>
   );

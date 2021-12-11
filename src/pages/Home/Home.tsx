@@ -29,7 +29,7 @@ const Home: React.FC = () => {
         </Hero>
       </Header>
       <Categories />
-      <ProductsList name="New Arrivals" categoryID={4} />
+      <ProductsList name="New Arrivals" categoryID={1} />
       <FeatContainer>
         <h2>Why people choose us</h2>
         <Features>
