@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import * as Styles from "./Category.Styles";
 import Navbar from "../../components/Navbar";
 import _ from "lodash";
 import ProductsList from "../../components/ProductsList";
 import Footer from "../../components/Footer";
 import Dropdown from "../../components/Dropdown";
 import { categories, sortBy } from "../../constants/mockData";
-import { Header, Filters } from "./Category.Styles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { selectCategory, setCategory } from "../../features/app/appSlice";
 
@@ -38,21 +38,21 @@ const Category: React.FC = () => {
   return (
     <React.Fragment>
       <Navbar />
-      <Header>
+      <Styles.Header>
         <h2>
           {catName === "New Arrivals"
             ? `Explorer ${_.startCase(_.capitalize(catName))}`
             : `Explorer ${_.startCase(_.capitalize(catName))} Products`}
         </h2>
-      </Header>
-      <Filters>
+      </Styles.Header>
+      <Styles.Filters>
         <Dropdown
           list={categories}
           value={catName}
           onSetOption={handleSetCategory}
         />
         <Dropdown list={sortBy} value={filter} onSetOption={handleSetFilter} />
-      </Filters>
+      </Styles.Filters>
       <ProductsList categoryID={idCategory} />
       <Footer />
     </React.Fragment>

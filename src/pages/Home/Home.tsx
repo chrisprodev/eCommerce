@@ -1,50 +1,41 @@
 import React from "react";
+import * as Styles from "./Home.Styles";
 import { Link } from "react-router-dom";
 import ProductsList from "../../components/ProductsList";
 import Categories from "../../components/Categories";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import { features } from "../../constants/mockData";
-import {
-  Header,
-  Hero,
-  FeatContainer,
-  Features,
-  Feat,
-  Testimonials,
-  Testimonial,
-  NavButtons,
-} from "./Home.Styles";
 
 const Home: React.FC = () => {
   return (
     <>
       <Navbar />
-      <Header>
-        <Hero>
+      <Styles.Header>
+        <Styles.Hero>
           <h1>Create your perfect sound system</h1>
           <Link to="/category/audio">
             <span>Shop Now</span>
           </Link>
-        </Hero>
-      </Header>
+        </Styles.Hero>
+      </Styles.Header>
       <Categories />
       <ProductsList name="New Arrivals" categoryID={1} />
-      <FeatContainer>
+      <Styles.FeatContainer>
         <h2>Why people choose us</h2>
-        <Features>
+        <Styles.Features>
           {features.map((feat) => (
-            <Feat key={feat.title}>
+            <Styles.Feat key={feat.title}>
               <span>{feat.icon}</span>
               <h4>{feat.title}</h4>
               <p>{feat.description}</p>
-            </Feat>
+            </Styles.Feat>
           ))}
-        </Features>
-      </FeatContainer>
-      <Testimonials>
+        </Styles.Features>
+      </Styles.FeatContainer>
+      <Styles.Testimonials>
         <h2>What our customers say</h2>
-        <Testimonial>
+        <Styles.Testimonial>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="83"
@@ -65,8 +56,8 @@ const Home: React.FC = () => {
             This is the best website I have ordered something from. I highly
             recommend.
           </p>
-        </Testimonial>
-        <NavButtons>
+        </Styles.Testimonial>
+        <Styles.NavButtons>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -105,8 +96,8 @@ const Home: React.FC = () => {
               />
             </svg>
           </span>
-        </NavButtons>
-      </Testimonials>
+        </Styles.NavButtons>
+      </Styles.Testimonials>
       <Footer />
     </>
   );

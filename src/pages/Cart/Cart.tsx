@@ -1,4 +1,5 @@
 import React from "react";
+import * as Styles from "./Cart.Styles";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
@@ -9,19 +10,6 @@ import {
   selectItems,
   selectTotalPrice,
 } from "../../features/app/appSlice";
-import {
-  CartDetails,
-  CartDetailsWrap,
-  CartItems,
-  CartWrapper,
-  DeleteIcon,
-  Header,
-  Item,
-  ItemDesc,
-  Total,
-  Subtotal,
-  Price,
-} from "./Cart.Styles";
 
 const Cart: React.FC = () => {
   const items = useAppSelector(selectItems);
@@ -39,14 +27,14 @@ const Cart: React.FC = () => {
   return (
     <React.Fragment>
       <Navbar />
-      <Header>
+      <Styles.Header>
         <h2>Shopping Cart</h2>
         <span onClick={handleClearCart}>Clear all</span>
-      </Header>
-      <CartWrapper>
-        <CartItems>
+      </Styles.Header>
+      <Styles.CartWrapper>
+        <Styles.CartItems>
           {items.map((item) => (
-            <Item>
+            <Styles.Item>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="144"
@@ -62,12 +50,14 @@ const Cart: React.FC = () => {
                   fill="#f6f7fb"
                 />
               </svg>
-              <ItemDesc>
+              <Styles.ItemDesc>
                 <h5>{item.productName}</h5>
-                <Price>{`$${item.price}`}</Price>
+                <Styles.Price>{`$${item.price}`}</Styles.Price>
                 {/* <Quantity /> */}
-              </ItemDesc>
-              <DeleteIcon onClick={() => handleRemoveItem(item.productID)}>
+              </Styles.ItemDesc>
+              <Styles.DeleteIcon
+                onClick={() => handleRemoveItem(item.productID)}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -81,31 +71,31 @@ const Cart: React.FC = () => {
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
-              </DeleteIcon>
-            </Item>
+              </Styles.DeleteIcon>
+            </Styles.Item>
           ))}
-        </CartItems>
-        <CartDetailsWrap>
-          <CartDetails>
+        </Styles.CartItems>
+        <Styles.CartDetailsWrap>
+          <Styles.CartDetails>
             <h5>Cart Total</h5>
-            <Subtotal>
+            <Styles.Subtotal>
               <span>Subtotal:</span>
               <span>{`$${total}`}</span>
-            </Subtotal>
-            <Subtotal>
+            </Styles.Subtotal>
+            <Styles.Subtotal>
               <span>Shipping:</span>
               <span>$0</span>
-            </Subtotal>
-            <Total>
+            </Styles.Subtotal>
+            <Styles.Total>
               <span>Total:</span>
               <span>{`$${total}`}</span>
-            </Total>
+            </Styles.Total>
             <div>
               <Link to="/">Checkout</Link>
             </div>
-          </CartDetails>
-        </CartDetailsWrap>
-      </CartWrapper>
+          </Styles.CartDetails>
+        </Styles.CartDetailsWrap>
+      </Styles.CartWrapper>
       <Footer />
     </React.Fragment>
   );
