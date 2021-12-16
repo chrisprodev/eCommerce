@@ -2,6 +2,7 @@ import { productInterface } from "./Products";
 
 export interface CartInterface {
   productID: string;
+  image: string;
   productName: string;
   quantity: number;
   price: number;

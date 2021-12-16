@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../../store/store";
+import db from "../../firebase/firebaseConfig";
+import { productInterface } from "../../models/Products";
+import { AppState, CartInterface } from "../../models/State";
+import { categories } from "../../constants/mockData";
 import {
   collection,
   getDocs,
@@ -10,10 +14,6 @@ import {
   orderBy,
   limit,
 } from "firebase/firestore";
-import db from "../../firebase/firebaseConfig";
-import { productInterface } from "../../models/Products";
-import { AppState, CartInterface } from "../../models/State";
-import { categories } from "../../constants/mockData";
 
 // Fecth Product List
 export const fetchProductsList = createAsyncThunk(
@@ -101,6 +101,9 @@ export const appSlice = createSlice({
     setCategory: (state, action: PayloadAction<number>) => {
       state.category = action.payload;
     },
+    resetProduct: (state) => {
+      state.product = undefined;
+    },
   },
   extraReducers: (builder) => {
     //* fetchProducts Status
@@ -114,8 +117,13 @@ export const appSlice = createSlice({
   },
 });
 
-export const { addToCart, resetCart, removeFromCart, setCategory } =
-  appSlice.actions;
+export const {
+  addToCart,
+  resetCart,
+  resetProduct,
+  removeFromCart,
+  setCategory,
+} = appSlice.actions;
 
 export const selectItems = (state: RootState) => state.app.cart;
 export const selectTotalItems = (state: RootState) =>

@@ -35,21 +35,14 @@ const Cart: React.FC = () => {
         <Styles.CartItems>
           {items.map((item) => (
             <Styles.Item>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="144"
-                height="144"
-                viewBox="0 0 144 144"
-              >
-                <rect
-                  id="Rectangle_21"
-                  data-name="Rectangle 21"
+              <Link to={`/product/${item.productID}`}>
+                <img
+                  src={item.image}
+                  alt={item.productName}
                   width="144"
                   height="144"
-                  rx="10"
-                  fill="#f6f7fb"
                 />
-              </svg>
+              </Link>
               <Styles.ItemDesc>
                 <h5>{item.productName}</h5>
                 <Styles.Price>{`$${item.price}`}</Styles.Price>
@@ -91,7 +84,9 @@ const Cart: React.FC = () => {
               <span>{`$${total}`}</span>
             </Styles.Total>
             <div>
-              <Link to="/">Checkout</Link>
+              <Link className="cart-details__checkout-btn" to="/">
+                Checkout
+              </Link>
             </div>
           </Styles.CartDetails>
         </Styles.CartDetailsWrap>

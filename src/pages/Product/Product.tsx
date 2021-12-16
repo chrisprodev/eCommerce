@@ -6,7 +6,11 @@ import Footer from "../../components/Footer";
 import RelatedProducts from "../../components/RelatedProducts";
 import { ProductActions } from "../../components/ProductActions";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { fetchProduct, selectProduct } from "../../features/app/appSlice";
+import {
+  fetchProduct,
+  resetProduct,
+  selectProduct,
+} from "../../features/app/appSlice";
 import ProductImages from "../../components/ProductImages";
 interface productParams {
   id: string;
@@ -18,6 +22,7 @@ const Product: React.FC = () => {
   const productData = useAppSelector(selectProduct);
 
   useEffect(() => {
+    dispatch(resetProduct());
     dispatch(fetchProduct(id));
   }, [id, dispatch]);
 
@@ -62,6 +67,7 @@ const Product: React.FC = () => {
               </Styles.Note>
               <ProductActions
                 id={id}
+                image={productData.images[0]}
                 name={productData.name}
                 price={productData.price}
               />
