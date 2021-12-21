@@ -1,5 +1,5 @@
 import React from "react";
-import * as Styles from "./Cart.Styles";
+import * as Styles from "./Checkout.Styles";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ import {
   selectTotalPrice,
 } from "../../features/app/appSlice";
 
-const Cart: React.FC = () => {
+const Checkout: React.FC = () => {
   const items = useAppSelector(selectItems);
   const total = useAppSelector(selectTotalPrice);
   const dispatch = useAppDispatch();
@@ -28,11 +28,12 @@ const Cart: React.FC = () => {
     <React.Fragment>
       <Navbar />
       <Styles.Header>
-        <h2>Shopping Cart</h2>
-        <span onClick={handleClearCart}>Clear all</span>
+        <h2>Checkout</h2>
+        {/* <span onClick={handleClearCart}>Clear all</span> */}
       </Styles.Header>
       <Styles.CartWrapper>
         <Styles.CartItems>
+          <h5>My Cart</h5>
           {items.map((item) => (
             <Styles.Item>
               <Link to={`/product/${item.productID}`}>
@@ -67,25 +68,24 @@ const Cart: React.FC = () => {
               </Styles.DeleteIcon>
             </Styles.Item>
           ))}
+          <Styles.Total>
+            <span>Total:</span>
+            <span>{`$${total}`}</span>
+          </Styles.Total>
         </Styles.CartItems>
         <Styles.CartDetailsWrap>
           <Styles.CartDetails>
-            <h5>Cart Total</h5>
-            <Styles.Subtotal>
-              <span>Subtotal:</span>
-              <span>{`$${total}`}</span>
-            </Styles.Subtotal>
-            <Styles.Subtotal>
-              <span>Shipping:</span>
-              <span>$0</span>
-            </Styles.Subtotal>
-            <Styles.Total>
-              <span>Total:</span>
-              <span>{`$${total}`}</span>
-            </Styles.Total>
+            <h5>Details</h5>
+            <label htmlFor="email">Email</label>
+            <input type="text" name="email" />
+            <label htmlFor="password">Password</label>
+            <input type="password" name="password" />
             <div>
-              <Link className="cart-details__checkout-btn" to="/checkout">
-                Checkout
+              <Link className="cart-details__continue-btn" to="/">
+                Continue
+              </Link>
+              <Link className="cart-details__guest-btn" to="/">
+                Guest Checkout
               </Link>
             </div>
           </Styles.CartDetails>
@@ -96,4 +96,4 @@ const Cart: React.FC = () => {
   );
 };
 
-export default Cart;
+export default Checkout;
