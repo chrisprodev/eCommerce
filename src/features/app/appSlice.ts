@@ -62,6 +62,7 @@ export const fetchProduct = createAsyncThunk(
           (cat) => cat.id === product.category
         );
 
+        product.categoryID = product.category;
         product.category = cateName[0].name;
         return product as productInterface;
       } else {

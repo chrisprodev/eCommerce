@@ -88,7 +88,7 @@ const Product: React.FC = () => {
           ))}
       </Styles.FeatContainer>
       {/* Related Products Carousel */}
-      <RelatedProducts />
+      {productData && <RelatedProducts categoryID={productData.categoryID} />}
       <Footer />
     </React.Fragment>
   );

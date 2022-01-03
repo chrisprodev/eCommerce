@@ -1,12 +1,18 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { productsData } from "../constants/mockData";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import Product from "./Product";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { fetchProductsList, selectProductList } from "../features/app/appSlice";
+interface props {
+  categoryID: string;
+}
 
-const RelatedProducts: React.FC = () => {
+const RelatedProducts: React.FC<props> = ({ categoryID }) => {
   const sliderRef = useRef<Slider>(null);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(selectProductList);
 
   const settings = {
     dots: false,
@@ -16,6 +22,10 @@ const RelatedProducts: React.FC = () => {
     slidesToScroll: 1,
     arrows: false,
   };
+
+  useEffect(() => {
+    dispatch(fetchProductsList(parseInt(categoryID)));
+  }, [dispatch, categoryID]);
 
   return (
     <Container>
@@ -72,15 +82,16 @@ const RelatedProducts: React.FC = () => {
       </Header>
       <HorizontalScroll>
         <Slider ref={sliderRef} {...settings}>
-          {productsData.map((product) => (
-            <Product
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              img={product.image}
-              price={129}
-            />
-          ))}
+          {products &&
+            products.map((product) => (
+              <Product
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                img={product.images[0]}
+                price={product.price}
+              />
+            ))}
         </Slider>
       </HorizontalScroll>
     </Container>
