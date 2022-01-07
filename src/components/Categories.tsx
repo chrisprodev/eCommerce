@@ -95,6 +95,10 @@ const Container = styled.section`
   padding-top: 8rem;
   -webkit-user-select: none;
   user-select: none;
+
+  @media screen and (max-width: 1280px) {
+    display: none;
+  }
 `;
 
 const Header = styled.div`

@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   removeFromCart,
-  resetCart,
   selectItems,
   selectTotalPrice,
 } from "../../features/app/appSlice";
@@ -15,10 +14,6 @@ const Checkout: React.FC = () => {
   const items = useAppSelector(selectItems);
   const total = useAppSelector(selectTotalPrice);
   const dispatch = useAppDispatch();
-
-  const handleClearCart = () => {
-    dispatch(resetCart());
-  };
 
   const handleRemoveItem = (itemID: string) => {
     dispatch(removeFromCart(itemID));

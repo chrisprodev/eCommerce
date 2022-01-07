@@ -10,6 +10,7 @@ export interface CartInterface {
 
 // Initial State Interface
 export interface AppState {
+  mobile: boolean;
   status: string;
   category: number;
   cart: CartInterface[];

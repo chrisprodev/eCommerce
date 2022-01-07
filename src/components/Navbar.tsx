@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { selectTotalItems } from "../features/app/appSlice";
-import { useAppSelector } from "../store/hooks";
+import {
+  selectTotalItems,
+  showMobileMenu,
+  showMenu,
+} from "../features/app/appSlice";
+import { navBarProps } from "../models/NavBar";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 
 const Navbar: React.FC<{}> = () => {
   const [show, setShow] = useState(false);
   const [animation, setAnimation] = useState(false);
+  const dispatch = useAppDispatch();
 
   const items = useAppSelector(selectTotalItems);
+  const menuStatus = useAppSelector(showMenu);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -26,13 +33,13 @@ const Navbar: React.FC<{}> = () => {
   };
 
   return (
-    <MainContainer sticky={show} animation={animation}>
-      <Container sticky={show} animation={animation}>
+    <MainContainer sticky={show} animation={animation} menu={menuStatus}>
+      <Container sticky={show} animation={animation} menu={menuStatus}>
         <Link to="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="114"
-            height="35"
+            width="114px"
+            height="35px"
             viewBox="0 0 114 35"
           >
             <text
@@ -49,7 +56,11 @@ const Navbar: React.FC<{}> = () => {
             </text>
           </svg>
         </Link>
-        <input type="text" placeholder="Search items..." />
+        <input
+          className="navbar__search"
+          type="text"
+          placeholder="Search items..."
+        />
         <Icons>
           <Link to="/cart">
             <CartContainer>
@@ -83,6 +94,15 @@ const Navbar: React.FC<{}> = () => {
             />
           </svg>
         </Icons>
+        <Hamburger
+          sticky={show}
+          animation={animation}
+          menu={menuStatus}
+          onClick={() => dispatch(showMobileMenu())}
+        >
+          <span />
+          <span />
+        </Hamburger>
       </Container>
     </MainContainer>
   );
@@ -90,23 +110,25 @@ const Navbar: React.FC<{}> = () => {
 
 export default Navbar;
 
-const MainContainer = styled.nav<{ sticky: boolean; animation: boolean }>`
+const MainContainer = styled.nav<navBarProps>`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 999;
-  transition: all 450ms ease;
-  background-color: ${(props) => (props.sticky ? "#ffffff" : "transparent")};
-  border-bottom: ${(props) =>
-    props.animation
-      ? props.sticky
+  transition: ${({ menu }) => (menu ? "none" : "all 450ms ease")};
+  background-color: ${({ sticky }) => (sticky ? "#ffffff" : "transparent")};
+  border-bottom: ${({ menu, animation, sticky }) =>
+    menu
+      ? "none"
+      : animation
+      ? sticky
         ? "solid 2px var(--gray)"
         : "none"
       : "solid 2px var(--gray)"};
 `;
 
-const Container = styled.div<{ sticky: boolean; animation: boolean }>`
+const Container = styled.div<navBarProps>`
   position: relative;
   z-index: 2;
   display: flex;
@@ -114,9 +136,10 @@ const Container = styled.div<{ sticky: boolean; animation: boolean }>`
   justify-content: space-between;
   max-width: 126rem;
   margin: 0 auto;
+  padding: 0 2rem;
   transition: all 450ms ease;
-  height: ${(props) =>
-    props.animation ? (props.sticky ? "8rem" : "10rem") : "8rem"};
+  height: ${({ menu, animation, sticky }) =>
+    menu ? "8rem" : animation ? (sticky ? "8rem" : "10rem") : "8rem"};
 
   a {
     display: flex;
@@ -129,18 +152,14 @@ const Container = styled.div<{ sticky: boolean; animation: boolean }>`
     padding-left: 1rem;
   }
 
-  input {
+  .navbar__search {
     flex-grow: 1;
     height: 4.4rem;
     padding: 0rem 2rem;
     border-radius: 5rem;
     border: none;
-    background: ${(props) =>
-      props.animation
-        ? props.sticky
-          ? "var(--gray)"
-          : "#ffffff"
-        : "var(--gray)"};
+    background: ${({ animation, sticky }) =>
+      animation ? (sticky ? "var(--gray)" : "#ffffff") : "var(--gray)"};
     transition: all 450ms ease;
 
     :focus {
@@ -150,8 +169,19 @@ const Container = styled.div<{ sticky: boolean; animation: boolean }>`
 
   svg {
     cursor: pointer;
-    color: ${(props) => props.animation && !props.sticky && "#ffffff"};
+    color: ${({ menu, animation, sticky }) =>
+      !menu && animation && !sticky && "#ffffff"};
     transition: all 450ms ease;
+  }
+
+  @media screen and (max-width: 640px) {
+    .navbar__search {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
+    transition: all 200ms ease;
   }
 `;
 
@@ -161,6 +191,10 @@ const Icons = styled.div`
     margin-left: 2rem;
     width: 2.6rem;
     height: 2.6rem;
+  }
+
+  @media screen and (max-width: 1280px) {
+    display: none;
   }
 `;
 
@@ -183,4 +217,37 @@ const CartItems = styled.span`
   color: white;
   font-size: 1.2rem;
   font-weight: 600;
+`;
+
+const Hamburger = styled.div<{
+  sticky: boolean;
+  animation: boolean;
+  menu: boolean;
+}>`
+  cursor: pointer;
+  height: 1.6rem;
+  display: none;
+
+  span {
+    width: 3.2rem;
+    height: 0.4rem;
+    background: ${({ menu, animation, sticky }) =>
+      menu
+        ? "var(--black)"
+        : animation && !sticky
+        ? "#ffffff"
+        : "var(--black)"};
+    border-radius: 0.2rem;
+  }
+
+  @media screen and (max-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 2rem;
+  }
+
+  @media screen and (max-width: 640px) {
+    margin-left: 0;
+  }
 `;

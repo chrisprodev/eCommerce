@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import _ from "lodash";
 import NewIcon from "../icons/NewIcon";
 import AudioIcon from "../icons/AudioIcon";
 import DroneIcon from "../icons/DroneIcon";

@@ -88,6 +88,11 @@ export const CartDetails = styled.div`
     height: 4.4rem;
     border-radius: 4.4rem;
     margin-top: 1rem;
+    padding: 0 2rem;
+
+    :focus {
+      outline: none;
+    }
   }
 
   .cart-details__continue-btn {

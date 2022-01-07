@@ -77,6 +77,7 @@ export const fetchProduct = createAsyncThunk(
 
 // Initial state
 const initialState: AppState = {
+  mobile: false,
   status: "",
   category: 2,
   cart: [],
@@ -88,6 +89,9 @@ export const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
+    showMobileMenu: (state) => {
+      state.mobile = !state.mobile;
+    },
     resetCart: (state) => {
       state.cart = [];
     },
@@ -124,6 +128,7 @@ export const {
   resetProduct,
   removeFromCart,
   setCategory,
+  showMobileMenu,
 } = appSlice.actions;
 
 export const selectItems = (state: RootState) => state.app.cart;
@@ -142,5 +147,6 @@ export const selectTotalPrice = (state: RootState) =>
 export const selectCategory = (state: RootState) => state.app.category;
 export const selectProductList = (state: RootState) => state.app.productList;
 export const selectProduct = (state: RootState) => state.app.product;
+export const showMenu = (state: RootState) => state.app.mobile;
 
 export default appSlice.reducer;

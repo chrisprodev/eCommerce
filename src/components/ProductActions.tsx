@@ -74,27 +74,3 @@ const Actions = styled.div`
     }
   }
 `;
-
-const Like = styled.span`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 2rem;
-  height: 5.4rem;
-  width: 5.4rem;
-  background: var(--gray);
-  border-radius: 5.4rem;
-
-  svg {
-    height: 2.4rem;
-    color: var(--black);
-  }
-
-  :hover {
-    background: var(--gray-mid);
-    svg {
-      color: var(--purple);
-    }
-  }
-`;

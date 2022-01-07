@@ -54,17 +54,25 @@ export default ProductsList;
 const Container = styled.section<{ padding: boolean }>`
   display: flex;
   flex-direction: column;
-  width: 100%;
   max-width: 126rem;
   margin: 0 auto;
+  padding: 0 2rem;
   padding-top: ${(props) => props.padding && "12rem"};
 `;
 
 const ProductsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
   padding-bottom: 7rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+  @media screen and (max-width: 960px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const CenterBTN = styled.div`
