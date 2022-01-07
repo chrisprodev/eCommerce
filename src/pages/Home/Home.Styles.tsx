@@ -49,11 +49,9 @@ export const Hero = styled.div`
 `;
 
 export const FeatContainer = styled.section`
-  width: 100%;
   max-width: 126rem;
   margin: 0 auto;
   padding-top: 19rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,6 +62,11 @@ export const Features = styled.div`
   justify-content: space-between;
   margin-top: 12rem;
   width: 90%;
+
+  @media screen and (max-width: 1280px) {
+    flex-direction: column;
+    margin-top: 6rem;
+  }
 `;
 
 export const Feat = styled.div`
@@ -102,6 +105,10 @@ export const Feat = styled.div`
     line-height: 3.2rem;
     text-align: center;
     max-width: 28rem;
+  }
+
+  @media screen and (max-width: 1280px) {
+    margin-bottom: 10rem;
   }
 `;
 
