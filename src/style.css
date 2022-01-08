@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root{
   --black: #18171c;
@@ -42,6 +42,16 @@ h1{
 h2{
   margin: 0;
   font-size: 3.2rem;
+}
+
+@media screen and (max-width:1280px){
+  h1{
+    font-size: 3.8rem;
+  }
+
+  h2{
+    font-size: 2.8rem;
+  } 
 }
 
 

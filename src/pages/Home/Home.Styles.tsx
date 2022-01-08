@@ -35,7 +35,7 @@ export const Hero = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 5.4rem;
-    font-weight: 600;
+    font-weight: 500;
     height: 4.4rem;
     width: 14rem;
     font-size: 1.8rem;
@@ -55,6 +55,10 @@ export const FeatContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 1280px) {
+    padding-top: 10rem;
+  }
 `;
 
 export const Features = styled.div`
@@ -108,11 +112,26 @@ export const Feat = styled.div`
   }
 
   @media screen and (max-width: 1280px) {
-    margin-bottom: 10rem;
+    margin-bottom: 8rem;
+
+    h4 {
+      margin-top: 3.6rem;
+      font-size: 2.2rem;
+    }
+
+    p {
+      margin-top: 2rem;
+      font-size: 1.8rem;
+      line-height: 3rem;
+    }
   }
 `;
 
 export const Testimonials = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 68rem;
   margin-top: 19rem;
   margin-bottom: 0;
@@ -120,10 +139,10 @@ export const Testimonials = styled.section`
   margin-right: auto;
   background: var(--gray);
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @media screen and (max-width: 1280px) {
+    margin-top: 0rem;
+    height: 57rem;
+  }
 `;
 
 export const Testimonial = styled.div`
@@ -131,6 +150,7 @@ export const Testimonial = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 9rem;
+
   h5 {
     margin-bottom: 0;
     margin-top: 4.5rem;
@@ -146,6 +166,21 @@ export const Testimonial = styled.div`
     line-height: 3.2rem;
     text-align: center;
     max-width: 49rem;
+  }
+
+  @media screen and (max-width: 1280px) {
+    margin-top: 6rem;
+
+    h5 {
+      margin-top: 2.4rem;
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1.8rem;
+      line-height: 2.8rem;
+      padding: 0 3rem;
+    }
   }
 `;
 

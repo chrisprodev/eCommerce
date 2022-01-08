@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { fetchProductsList, selectProductList } from "../features/app/appSlice";
+import {
+  fetchProductsList,
+  selectProductList,
+  setCategory,
+} from "../features/app/appSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import Product from "./Product";
 
@@ -23,6 +27,10 @@ const ProductsList: React.FC<props> = ({ name, categoryID }) => {
     dispatch(fetchProductsList(categoryID));
   }, [dispatch, categoryID]);
 
+  const handleSetCategory = () => {
+    dispatch(setCategory(1));
+  };
+
   return (
     <Container padding={isHome}>
       {name && <h2>{name}</h2>}
@@ -40,7 +48,7 @@ const ProductsList: React.FC<props> = ({ name, categoryID }) => {
       </ProductsWrapper>
       {isHome && (
         <CenterBTN>
-          <Link to="/category/new-arrivals">
+          <Link to="/products/new-arrivals" onClick={() => handleSetCategory()}>
             <span>View all</span>
           </Link>
         </CenterBTN>
@@ -58,6 +66,10 @@ const Container = styled.section<{ padding: boolean }>`
   margin: 0 auto;
   padding: 0 2rem;
   padding-top: ${(props) => props.padding && "12rem"};
+
+  @media screen and (max-width: 1280px) {
+    padding-top: ${(props) => props.padding && "6rem"};
+  }
 `;
 
 const ProductsWrapper = styled.div`
@@ -86,7 +98,7 @@ const CenterBTN = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 5.4rem;
-    font-weight: 600;
+    font-weight: 500;
     height: 4.4rem;
     width: 14rem;
     font-size: 1.8rem;
@@ -95,6 +107,12 @@ const CenterBTN = styled.div`
 
     :hover {
       background: var(--purple-hover);
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
+    a {
+      margin-top: 0rem;
     }
   }
 `;

@@ -79,7 +79,7 @@ const Footer = () => {
 export default Footer;
 
 const Container = styled.footer`
-  margin-top: 19rem;
+  margin-top: 0rem;
   border-top: solid 2px var(--gray);
 `;
 
@@ -90,11 +90,20 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   p {
     font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--black-mid);
   }
 
   svg {
     margin-left: 2rem;
+  }
+
+  @media screen and (max-width: 1280px) {
+    height: auto;
+    flex-direction: column;
+    padding: 3rem 0;
   }
 `;
