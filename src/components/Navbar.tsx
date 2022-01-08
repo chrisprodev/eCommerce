@@ -38,8 +38,8 @@ const Navbar: React.FC<{}> = () => {
         <Link to="/">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="114px"
-            height="35px"
+            // width="114px"
+            // height="35px"
             viewBox="0 0 114 35"
           >
             <text
@@ -168,6 +168,7 @@ const Container = styled.div<navBarProps>`
   }
 
   svg {
+    width: 114px;
     cursor: pointer;
     color: ${({ menu, animation, sticky }) =>
       !menu && animation && !sticky && "#ffffff"};
@@ -229,8 +230,8 @@ const Hamburger = styled.div<{
   display: none;
 
   span {
-    width: 3.2rem;
-    height: 0.4rem;
+    width: 2.8rem;
+    height: 0.36rem;
     background: ${({ menu, animation, sticky }) =>
       menu
         ? "var(--black)"
@@ -238,6 +239,16 @@ const Hamburger = styled.div<{
         ? "#ffffff"
         : "var(--black)"};
     border-radius: 0.2rem;
+    transition: all 200ms ease;
+    transform-origin: 17.5% center;
+  }
+
+  span:first-child {
+    transform: ${({ menu }) => (menu ? "rotate(45deg)" : "rotate(0)")};
+  }
+
+  span:last-child {
+    transform: ${({ menu }) => (menu ? "rotate(-45deg)" : "rotate(0)")};
   }
 
   @media screen and (max-width: 1280px) {
