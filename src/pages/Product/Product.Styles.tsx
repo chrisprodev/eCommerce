@@ -6,12 +6,18 @@ export const Header = styled.header`
   max-width: 126rem;
   margin: 0 auto;
   padding-top: 16rem;
+
+  @media screen and (max-width: 1280px) {
+    flex-direction: column;
+    max-width: 58rem;
+  }
 `;
 
 export const Details = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 7.4rem;
+
   h1 {
     font-size: 3.2rem;
   }
@@ -33,6 +39,12 @@ export const Details = styled.div`
         margin-right: 1rem;
       }
     }
+  }
+
+  @media screen and (max-width: 1280px) {
+    margin-left: 0;
+    margin-top: 5rem;
+    padding: 0 3rem;
   }
 `;
 
@@ -68,15 +80,24 @@ export const FeatContainer = styled.section`
   max-width: 126rem;
   margin: 0 auto;
   margin-top: 10rem;
+  padding: 0 3rem;
+
+  @media screen and (max-width: 1280px) {
+    margin-top: 4rem;
+  }
 `;
 
 export const Feat = styled.div`
-  padding-top: 8rem;
   display: flex;
+  padding-top: 8rem;
 
   svg {
     width: 6rem;
     height: 6rem;
+  }
+
+  @media screen and (max-width: 1280px) {
+    padding-top: 6rem;
   }
 `;
 
@@ -90,5 +111,18 @@ export const FeatDetail = styled.div`
     color: var(--black-mid);
     font-size: 2rem;
     line-height: 3.2rem;
+  }
+
+  @media screen and (max-width: 1280px) {
+    max-width: 54rem;
+    margin: 0 auto;
+
+    h4 {
+      font-size: 2.2rem;
+    }
+    p {
+      font-size: 1.8rem;
+      line-height: 3rem;
+    }
   }
 `;
