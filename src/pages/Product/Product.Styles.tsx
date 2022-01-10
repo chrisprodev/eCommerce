@@ -11,6 +11,10 @@ export const Header = styled.header`
     flex-direction: column;
     max-width: 58rem;
   }
+
+  @media screen and (max-width: 640px) {
+    padding-top: 12rem;
+  }
 `;
 
 export const Details = styled.div`
@@ -45,6 +49,21 @@ export const Details = styled.div`
     margin-left: 0;
     margin-top: 5rem;
     padding: 0 3rem;
+
+    h1 {
+      font-size: 2.4rem;
+    }
+
+    ul {
+      li {
+        font-size: 1.6rem;
+        line-height: 2.8rem;
+
+        svg {
+          height: 0.8rem;
+        }
+      }
+    }
   }
 `;
 
@@ -52,6 +71,11 @@ export const Note = styled.p`
   font-size: 1.6rem;
   line-height: 2.8rem;
   color: var(--purple);
+
+  @media screen and (max-width: 1280px) {
+    font-size: 1.4rem;
+    line-height: 2.6rem;
+  }
 `;
 
 export const Price = styled.p`
@@ -59,10 +83,14 @@ export const Price = styled.p`
   padding-top: 2rem;
   font-size: 2.4rem;
   font-weight: 600;
+
+  @media screen and (max-width: 1280px) {
+    font-size: 2.2rem;
+  }
 `;
 
 export const Category = styled.span`
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +98,7 @@ export const Category = styled.span`
   height: 3.4rem;
   background: var(--gray-mid);
   color: var(--purple);
-  border-radius: 6rem;
+  border-radius: 0.5rem;
   padding: 0 2rem;
   text-transform: uppercase;
   font-weight: 700;

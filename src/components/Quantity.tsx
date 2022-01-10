@@ -80,4 +80,10 @@ const Wrapper = styled.span`
     font-weight: 700;
     text-align: center;
   }
+
+  @media screen and (max-width: 1280px) {
+    justify-content: space-between;
+    margin-right: 0;
+    padding: 0 2.4rem;
+  }
 `;

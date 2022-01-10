@@ -73,4 +73,14 @@ const Actions = styled.div`
       background: var(--purple-hover);
     }
   }
+
+  @media screen and (max-width: 1280px) {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 2rem;
+
+    button {
+      margin-top: 2rem;
+    }
+  }
 `;
