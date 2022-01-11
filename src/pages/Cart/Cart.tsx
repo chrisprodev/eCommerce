@@ -29,7 +29,7 @@ const Cart: React.FC = () => {
       <Navbar />
       <Styles.Header>
         <h2>Shopping Cart</h2>
-        <span onClick={handleClearCart}>Clear all</span>
+        <button onClick={handleClearCart}>Clear all</button>
       </Styles.Header>
       <Styles.CartWrapper>
         <Styles.CartItems>
@@ -46,7 +46,8 @@ const Cart: React.FC = () => {
               <Styles.ItemDesc>
                 <h5>{item.productName}</h5>
                 <Styles.Price>{`$${item.price}`}</Styles.Price>
-                {/* <Quantity /> */}
+                <Styles.Quantiy>{`QTY: ${item.quantity}`}</Styles.Quantiy>
+                <Styles.RemoveBtn>Remove</Styles.RemoveBtn>
               </Styles.ItemDesc>
               <Styles.DeleteIcon
                 onClick={() => handleRemoveItem(item.productID)}
