@@ -63,12 +63,32 @@ const Checkout: React.FC = () => {
               </Styles.DeleteIcon>
             </Styles.Item>
           ))}
+          <Styles.Subtotal>
+            <span>Subtotal:</span>
+            <span>{`$${total}`}</span>
+          </Styles.Subtotal>
+          <Styles.Subtotal>
+            <span>Shipping:</span>
+            <span>$0</span>
+          </Styles.Subtotal>
           <Styles.Total>
             <span>Total:</span>
             <span>{`$${total}`}</span>
           </Styles.Total>
         </Styles.CartItems>
-        <Styles.CartDetailsWrap>
+        <Styles.PaymentInfo>
+          <h5>Payment Info</h5>
+          <span className="payment__method-title">Payment Method</span>
+          <ul>
+            <li>Credit Card</li>
+            <li>Paypal</li>
+          </ul>
+          <p className="payment__name">Full Name</p>
+          <p className="payment__card-number">Card Number</p>
+          <p className="payment__exp-date">Expiration Date</p>
+          <button>{`Pay $${total}`}</button>
+        </Styles.PaymentInfo>
+        {/* <Styles.CartDetailsWrap>
           <Styles.CartDetails>
             <h5>Details</h5>
             <label htmlFor="email">Email</label>
@@ -84,7 +104,7 @@ const Checkout: React.FC = () => {
               </Link>
             </div>
           </Styles.CartDetails>
-        </Styles.CartDetailsWrap>
+        </Styles.CartDetailsWrap> */}
       </Styles.CartWrapper>
       <Footer />
     </React.Fragment>
