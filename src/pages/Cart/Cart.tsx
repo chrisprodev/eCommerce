@@ -47,7 +47,11 @@ const Cart: React.FC = () => {
                 <h5>{item.productName}</h5>
                 <Styles.Price>{`$${item.price}`}</Styles.Price>
                 <Styles.Quantiy>{`QTY: ${item.quantity}`}</Styles.Quantiy>
-                <Styles.RemoveBtn>Remove</Styles.RemoveBtn>
+                <Styles.RemoveBtn
+                  onClick={() => handleRemoveItem(item.productID)}
+                >
+                  Remove
+                </Styles.RemoveBtn>
               </Styles.ItemDesc>
               <Styles.DeleteIcon
                 onClick={() => handleRemoveItem(item.productID)}
