@@ -8,85 +8,97 @@ import {
   removeFromCart,
   selectItems,
   selectTotalPrice,
+  showMenu,
 } from "../../features/app/appSlice";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { Size } from "../../models/Hooks";
+import MobileMenu from "../../components/MobileMenu";
 
 const Checkout: React.FC = () => {
   const items = useAppSelector(selectItems);
   const total = useAppSelector(selectTotalPrice);
   const dispatch = useAppDispatch();
+  const menuStatus = useAppSelector(showMenu);
+  const size: Size = useWindowSize();
 
   const handleRemoveItem = (itemID: string) => {
     dispatch(removeFromCart(itemID));
   };
 
   return (
-    <React.Fragment>
+    <>
       <Navbar />
-      <Styles.Header>
-        <h2>Checkout</h2>
-      </Styles.Header>
-      <Styles.CartWrapper>
-        <Styles.CartItems>
-          <h5>My Cart</h5>
-          {items.map((item) => (
-            <Styles.Item>
-              <Link to={`/product/${item.productID}`}>
-                <img
-                  src={item.image}
-                  alt={item.productName}
-                  width="144"
-                  height="144"
-                />
-              </Link>
-              <Styles.ItemDesc>
-                <h5>{item.productName}</h5>
-                <Styles.Price>{`$${item.quantity * item.price}`}</Styles.Price>
-              </Styles.ItemDesc>
-              <Styles.DeleteIcon
-                onClick={() => handleRemoveItem(item.productID)}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </Styles.DeleteIcon>
-            </Styles.Item>
-          ))}
-          <Styles.Subtotal>
-            <span>Subtotal:</span>
-            <span>{`$${total}`}</span>
-          </Styles.Subtotal>
-          <Styles.Subtotal>
-            <span>Shipping:</span>
-            <span>$0</span>
-          </Styles.Subtotal>
-          <Styles.Total>
-            <span>Total:</span>
-            <span>{`$${total}`}</span>
-          </Styles.Total>
-        </Styles.CartItems>
-        <Styles.PaymentInfo>
-          <h5>Payment Info</h5>
-          <span className="payment__method-title">Payment Method</span>
-          <ul>
-            <li>Credit Card</li>
-            <li>Paypal</li>
-          </ul>
-          <p className="payment__name">Full Name</p>
-          <p className="payment__card-number">Card Number</p>
-          <p className="payment__exp-date">Expiration Date</p>
-          <button>{`Pay $${total}`}</button>
-        </Styles.PaymentInfo>
-        {/* <Styles.CartDetailsWrap>
+      {size && size.width && size.width < 1280 && menuStatus ? (
+        <MobileMenu />
+      ) : (
+        <>
+          <Styles.Header>
+            <h2>Checkout</h2>
+          </Styles.Header>
+          <Styles.CartWrapper>
+            <Styles.CartItems>
+              <h5>My Cart</h5>
+              {items.map((item) => (
+                <Styles.Item>
+                  <Link to={`/product/${item.productID}`}>
+                    <img
+                      src={item.image}
+                      alt={item.productName}
+                      width="144"
+                      height="144"
+                    />
+                  </Link>
+                  <Styles.ItemDesc>
+                    <h5>{item.productName}</h5>
+                    <Styles.Price>{`$${
+                      item.quantity * item.price
+                    }`}</Styles.Price>
+                  </Styles.ItemDesc>
+                  <Styles.DeleteIcon
+                    onClick={() => handleRemoveItem(item.productID)}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </Styles.DeleteIcon>
+                </Styles.Item>
+              ))}
+              <Styles.Subtotal>
+                <span>Subtotal:</span>
+                <span>{`$${total}`}</span>
+              </Styles.Subtotal>
+              <Styles.Subtotal>
+                <span>Shipping:</span>
+                <span>$0</span>
+              </Styles.Subtotal>
+              <Styles.Total>
+                <span>Total:</span>
+                <span>{`$${total}`}</span>
+              </Styles.Total>
+            </Styles.CartItems>
+            <Styles.PaymentInfo>
+              <h5>Payment Info</h5>
+              <span className="payment__method-title">Payment Method</span>
+              <ul>
+                <li>Credit Card</li>
+                <li>Paypal</li>
+              </ul>
+              <p className="payment__name">Full Name</p>
+              <p className="payment__card-number">Card Number</p>
+              <p className="payment__exp-date">Expiration Date</p>
+              <button>{`Pay $${total}`}</button>
+            </Styles.PaymentInfo>
+            {/* <Styles.CartDetailsWrap>
           <Styles.CartDetails>
             <h5>Details</h5>
             <label htmlFor="email">Email</label>
@@ -103,9 +115,11 @@ const Checkout: React.FC = () => {
             </div>
           </Styles.CartDetails>
         </Styles.CartDetailsWrap> */}
-      </Styles.CartWrapper>
-      <Footer />
-    </React.Fragment>
+          </Styles.CartWrapper>
+          <Footer />
+        </>
+      )}
+    </>
   );
 };
 
