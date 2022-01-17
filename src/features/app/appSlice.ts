@@ -14,6 +14,7 @@ import {
   orderBy,
   limit,
 } from "firebase/firestore";
+import { Item } from "../../pages/Cart/Cart.Styles";
 
 // Fecth Product List
 export const fetchProductsList = createAsyncThunk(
@@ -96,7 +97,15 @@ export const appSlice = createSlice({
       state.cart = [];
     },
     addToCart: (state, action: PayloadAction<CartInterface>) => {
-      state.cart.push(action.payload);
+      const item = state.cart.find(
+        (product) => product.productID === action.payload.productID
+      );
+
+      if (item) {
+        item.quantity += action.payload.quantity;
+      } else {
+        state.cart.push(action.payload);
+      }
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.cart = state.cart.filter(
