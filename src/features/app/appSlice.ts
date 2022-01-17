@@ -149,7 +149,7 @@ export const selectTotalItems = (state: RootState) =>
 
 export const selectTotalPrice = (state: RootState) =>
   state.app.cart.reduce(
-    (accum: number, item: CartInterface) => accum + item.price,
+    (accum: number, item: CartInterface) => accum + item.price * item.quantity,
     0
   );
 

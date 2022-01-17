@@ -24,7 +24,6 @@ const Checkout: React.FC = () => {
       <Navbar />
       <Styles.Header>
         <h2>Checkout</h2>
-        {/* <span onClick={handleClearCart}>Clear all</span> */}
       </Styles.Header>
       <Styles.CartWrapper>
         <Styles.CartItems>
@@ -41,8 +40,7 @@ const Checkout: React.FC = () => {
               </Link>
               <Styles.ItemDesc>
                 <h5>{item.productName}</h5>
-                <Styles.Price>{`$${item.price}`}</Styles.Price>
-                {/* <Quantity /> */}
+                <Styles.Price>{`$${item.quantity * item.price}`}</Styles.Price>
               </Styles.ItemDesc>
               <Styles.DeleteIcon
                 onClick={() => handleRemoveItem(item.productID)}
