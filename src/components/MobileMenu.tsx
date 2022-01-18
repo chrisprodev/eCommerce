@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { showMenu } from "../features/app/appSlice";
 import { useAppSelector } from "../store/hooks";
+import { categories as categoriesData } from "../constants/mockData";
 
 const MobileMenu: React.FC<{}> = () => {
   const menuStatus = useAppSelector(showMenu);
+  const [categories, openCategories] = useState(false);
 
   return (
     <Wrapper menu={menuStatus}>
@@ -15,7 +17,30 @@ const MobileMenu: React.FC<{}> = () => {
           type="text"
           placeholder="Search items..."
         />
-        <Link to="/products">Categories</Link>
+        <CategoryMenu
+          onClick={() => openCategories(!categories)}
+          open={categories}
+        >
+          <span>Categories</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </CategoryMenu>
+        <CategoryList open={categories}>
+          {categoriesData.map((cat) => (
+            <Link to="/products">{cat.name}</Link>
+          ))}
+        </CategoryList>
         <Link to="/cart">Cart</Link>
         <Link to="/">Account</Link>
       </BlockOne>
@@ -62,6 +87,9 @@ const Wrapper = styled.div<{ menu: boolean }>`
     font-size: 2.4rem;
     margin: 3rem 3rem 0rem 3rem;
     font-weight: 500;
+    :hover {
+      color: var(--blue);
+    }
   }
 
   a:last-child {
@@ -76,6 +104,35 @@ const Wrapper = styled.div<{ menu: boolean }>`
 const BlockOne = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const CategoryList = styled.div<{ open: boolean }>`
+  display: ${({ open }) => (open ? "flex" : "none")};
+  flex-direction: column;
+  padding-left: 2rem;
+`;
+
+const CategoryMenu = styled.div<{ open: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem 3rem 0rem 3rem;
+  user-select: none;
+  cursor: pointer;
+
+  span {
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+
+  svg {
+    width: 2rem;
+    height: auto;
+    transition: all 200ms ease;
+    transform: ${({ open }) => (open ? "rotate(0)" : "rotate(-90deg)")};
+  }
+  :hover {
+    color: var(--blue);
+  }
 `;
 
 const BlockTwo = styled.div`
