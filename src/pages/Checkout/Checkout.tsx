@@ -37,7 +37,7 @@ const Checkout: React.FC = () => {
           </Styles.Header>
           <Styles.CartWrapper>
             <Styles.CartItems>
-              <h5>My Cart</h5>
+              <h5>My cart</h5>
               {items.map((item) => (
                 <Styles.Item>
                   <Link to={`/product/${item.productID}`}>
@@ -87,34 +87,55 @@ const Checkout: React.FC = () => {
               </Styles.Total>
             </Styles.CartItems>
             <Styles.PaymentInfo>
-              <h5>Payment Info</h5>
-              <span className="payment__method-title">Payment Method</span>
+              <h5>Payment info</h5>
+              <span className="payment__method-title">Payment method</span>
               <ul>
-                <li>Credit Card</li>
+                <li>Credit card</li>
                 <li>Paypal</li>
               </ul>
-              <p className="payment__name">Full Name</p>
-              <p className="payment__card-number">Card Number</p>
-              <p className="payment__exp-date">Expiration Date</p>
+              <p className="payment__name">Email</p>
+              <Styles.PaymentInput
+                type="text"
+                name="email"
+                aria-invalid="false"
+                aria-required="true"
+                value=""
+              />
+              <p className="payment__card-number">Card number</p>
+              <Styles.PaymentInput
+                type="text"
+                name="number"
+                placeholder="1234 1234 1234 1234"
+                aria-invalid="false"
+                aria-required="true"
+                value=""
+              />
+              <Styles.Column>
+                <Styles.Row>
+                  <p className="payment__exp-date">Expiry</p>
+                  <Styles.PaymentInput
+                    type="text"
+                    name="number"
+                    placeholder="MM/YY"
+                    aria-invalid="false"
+                    aria-required="true"
+                    value=""
+                  />
+                </Styles.Row>
+                <Styles.Row>
+                  <p className="payment__card-number">CVC</p>
+                  <Styles.PaymentInput
+                    type="text"
+                    name="text"
+                    placeholder="CVC"
+                    aria-invalid="false"
+                    aria-required="true"
+                    value=""
+                  />
+                </Styles.Row>
+              </Styles.Column>
               <button>{`Pay $${total}`}</button>
             </Styles.PaymentInfo>
-            {/* <Styles.CartDetailsWrap>
-          <Styles.CartDetails>
-            <h5>Details</h5>
-            <label htmlFor="email">Email</label>
-            <input type="text" name="email" />
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" />
-            <div>
-              <Link className="cart-details__continue-btn" to="/">
-                Continue
-              </Link>
-              <Link className="cart-details__guest-btn" to="/">
-                Guest Checkout
-              </Link>
-            </div>
-          </Styles.CartDetails>
-        </Styles.CartDetailsWrap> */}
           </Styles.CartWrapper>
           <Footer />
         </>

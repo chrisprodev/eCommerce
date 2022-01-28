@@ -41,18 +41,20 @@ export const Header = styled.header`
 
 export const CartWrapper = styled.section`
   display: flex;
-  flex-direction: column;
+
   max-width: 126rem;
   margin: 0 auto;
   padding-top: 4rem;
 
   @media screen and (max-width: 1280px) {
     padding: 4rem 3rem 0 3rem;
+    flex-direction: column;
   }
 `;
 
 export const CartItems = styled.div`
   margin-bottom: 5rem;
+  flex-grow: 4;
 
   h5 {
     font-size: 2.4rem;
@@ -60,6 +62,7 @@ export const CartItems = styled.div`
   }
 
   @media screen and (max-width: 1280px) {
+    flex-grow: unset;
     h5 {
       font-size: 2.2rem;
     }
@@ -300,7 +303,11 @@ export const PaymentInfo = styled.div`
   border-radius: 1rem;
   background: var(--gray);
   padding: 3rem;
+  margin-left: 5rem;
   margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 
   h5 {
     font-size: 2.4rem;
@@ -326,6 +333,7 @@ export const PaymentInfo = styled.div`
   }
 
   button {
+    cursor: pointer;
     color: #ffffff;
     background: var(--purple);
     display: flex;
@@ -341,8 +349,39 @@ export const PaymentInfo = styled.div`
   }
 
   @media screen and (max-width: 1280px) {
+    margin-left: 0;
+    flex-grow: unset;
     h5 {
       font-size: 2.2rem;
     }
   }
+`;
+
+export const PaymentInput = styled.input`
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  transition: background 0.15s ease, border 0.15s ease, box-shadow 0.15s ease,
+    color 0.15s ease;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 3%), 0px 3px 6px rgb(0 0 0 / 2%);
+
+  :focus {
+    outline: 0;
+    border-color: rgba(100, 83, 247, 0.7);
+    box-shadow: 0px 1px 1px rgba(100, 83, 247, 0.3),
+      0px 3px 6px rgba(100, 83, 247, 0.05), 0 0 0 3px rgba(100, 83, 247, 0.3);
+  }
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Column = styled.div`
+  display: block;
+  columns: 2;
+  //gap: 4rem;
 `;
