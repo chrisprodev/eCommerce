@@ -13,6 +13,7 @@ import {
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { Size } from "../../models/Hooks";
 import MobileMenu from "../../components/MobileMenu";
+import PaymentForm from "../../components/PaymentForm";
 
 const Checkout: React.FC = () => {
   const items = useAppSelector(selectItems);
@@ -86,56 +87,7 @@ const Checkout: React.FC = () => {
                 <span>{`$${total}`}</span>
               </Styles.Total>
             </Styles.CartItems>
-            <Styles.PaymentInfo>
-              <h5>Payment info</h5>
-              <span className="payment__method-title">Payment method</span>
-              <ul>
-                <li>Credit card</li>
-                <li>Paypal</li>
-              </ul>
-              <p className="payment__name">Email</p>
-              <Styles.PaymentInput
-                type="text"
-                name="email"
-                aria-invalid="false"
-                aria-required="true"
-                value=""
-              />
-              <p className="payment__card-number">Card number</p>
-              <Styles.PaymentInput
-                type="text"
-                name="number"
-                placeholder="1234 1234 1234 1234"
-                aria-invalid="false"
-                aria-required="true"
-                value=""
-              />
-              <Styles.Column>
-                <Styles.Row>
-                  <p className="payment__exp-date">Expiry</p>
-                  <Styles.PaymentInput
-                    type="text"
-                    name="number"
-                    placeholder="MM/YY"
-                    aria-invalid="false"
-                    aria-required="true"
-                    value=""
-                  />
-                </Styles.Row>
-                <Styles.Row>
-                  <p className="payment__card-number">CVC</p>
-                  <Styles.PaymentInput
-                    type="text"
-                    name="text"
-                    placeholder="CVC"
-                    aria-invalid="false"
-                    aria-required="true"
-                    value=""
-                  />
-                </Styles.Row>
-              </Styles.Column>
-              <button>{`Pay $${total}`}</button>
-            </Styles.PaymentInfo>
+            <PaymentForm total={total} />
           </Styles.CartWrapper>
           <Footer />
         </>
