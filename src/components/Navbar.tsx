@@ -160,10 +160,14 @@ const Container = styled.div<navBarProps>`
     border: none;
     background: ${({ animation, sticky }) =>
       animation ? (sticky ? "var(--gray)" : "#ffffff") : "var(--gray)"};
-    transition: all 450ms ease;
+    transition: background 0.15s ease, border 0.15s ease, box-shadow 0.15s ease,
+      color 0.15s ease;
 
     :focus {
-      outline: none;
+      outline: rgba(100, 83, 247, 1);
+      background: #fff;
+      box-shadow: 0px 1px 1px rgba(100, 83, 247, 0.3),
+        0px 3px 6px rgba(100, 83, 247, 0.05), 0 0 0 3px rgba(100, 83, 247, 0.3);
     }
   }
 

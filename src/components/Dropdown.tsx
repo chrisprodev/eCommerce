@@ -62,13 +62,18 @@ const MainContainer = styled.div<{ open: boolean }>`
   padding: 0 1.6rem;
   border-style: solid;
   border-width: 2px;
-  border-color: ${(props) => (props.open ? "var(--purple)" : "var(--gray)")};
+  border-color: ${(props) =>
+    props.open ? " rgba(100, 83, 247, 0.7)" : "var(--gray)"};
   border-radius: 1rem;
-  transition: border-color 100ms ease;
+  transition: all 150ms ease;
+
+  box-shadow: ${(props) =>
+    props.open
+      ? " 0px 1px 1px rgba(100, 83, 247, 0.3), 0px 3px 6px rgba(100, 83, 247, 0.05), 0 0 0 3px rgba(100, 83, 247, 0.3)"
+      : "none"};
 
   :hover {
-    border-color: ${(props) =>
-      props.open ? "var(--purple)" : "var(--gray-mid)"};
+    border-color: rgba(100, 83, 247, 0.7);
   }
 
   p {
