@@ -80,7 +80,7 @@ export const fetchProduct = createAsyncThunk(
 const initialState: AppState = {
   mobile: false,
   status: "",
-  category: 2,
+  category: 1,
   cart: [],
   productList: [],
   product: undefined,
