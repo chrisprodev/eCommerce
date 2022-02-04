@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Cleave from "cleave.js/react";
 import styled from "styled-components";
 
 const PaymentForm: React.FC<{ total: number }> = ({ total }) => {
@@ -20,7 +21,8 @@ const PaymentForm: React.FC<{ total: number }> = ({ total }) => {
       {payment === 0 ? (
         <>
           <p className="payment__name">Email</p>
-          <PaymentInput
+          <input
+            placeholder="Enter your email"
             type="text"
             name="email"
             aria-invalid="false"
@@ -28,35 +30,28 @@ const PaymentForm: React.FC<{ total: number }> = ({ total }) => {
             value=""
           />
           <p className="payment__card-number">Card number</p>
-          <PaymentInput
-            type="text"
-            name="number"
+          <Cleave
             placeholder="1234 1234 1234 1234"
-            aria-invalid="false"
-            aria-required="true"
-            value=""
+            options={{ creditCard: true }}
           />
           <Column>
             <Row>
               <p className="payment__exp-date">Expiry</p>
-              <PaymentInput
-                type="text"
-                name="number"
+              <Cleave
                 placeholder="MM/YY"
-                aria-invalid="false"
-                aria-required="true"
-                value=""
+                options={{
+                  date: true,
+                  datePattern: ["m", "y"],
+                }}
               />
             </Row>
             <Row>
               <p className="payment__card-number">CVC</p>
-              <PaymentInput
-                type="text"
-                name="text"
+              <Cleave
                 placeholder="CVC"
-                aria-invalid="false"
-                aria-required="true"
-                value=""
+                options={{
+                  blocks: [3],
+                }}
               />
             </Row>
           </Column>
@@ -64,7 +59,8 @@ const PaymentForm: React.FC<{ total: number }> = ({ total }) => {
       ) : (
         <>
           <p className="payment__name">Email</p>
-          <PaymentInput
+          <input
+            placeholder="Enter your Paypal email"
             type="text"
             name="email"
             aria-invalid="false"
@@ -164,6 +160,25 @@ const PaymentInfo = styled.div`
     border: none;
   }
 
+  input[type="text"],
+  input[type="number"] {
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    transition: background 0.15s ease, border 0.15s ease, box-shadow 0.15s ease,
+      color 0.15s ease;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 3%), 0px 3px 6px rgb(0 0 0 / 2%);
+
+    :focus {
+      outline: 0;
+      border-color: rgba(100, 83, 247, 0.7);
+      box-shadow: 0px 1px 1px rgba(100, 83, 247, 0.3),
+        0px 3px 6px rgba(100, 83, 247, 0.05), 0 0 0 3px rgba(100, 83, 247, 0.3);
+    }
+  }
+
   @media screen and (max-width: 1280px) {
     margin-left: 0;
     width: unset;
@@ -179,24 +194,6 @@ const OptionsWrapper = styled.div`
   margin-bottom: 1.6rem;
 `;
 
-const PaymentInput = styled.input`
-  padding: 1.2rem;
-  margin-bottom: 1rem;
-  background-color: #fff;
-  border-radius: 0.5rem;
-  transition: background 0.15s ease, border 0.15s ease, box-shadow 0.15s ease,
-    color 0.15s ease;
-  border: 1px solid #e6e6e6;
-  box-shadow: 0px 1px 1px rgb(0 0 0 / 3%), 0px 3px 6px rgb(0 0 0 / 2%);
-
-  :focus {
-    outline: 0;
-    border-color: rgba(100, 83, 247, 0.7);
-    box-shadow: 0px 1px 1px rgba(100, 83, 247, 0.3),
-      0px 3px 6px rgba(100, 83, 247, 0.05), 0 0 0 3px rgba(100, 83, 247, 0.3);
-  }
-`;
-
 const Row = styled.div`
   display: flex;
   flex-direction: column;
@@ -205,5 +202,4 @@ const Row = styled.div`
 const Column = styled.div`
   display: block;
   columns: 2;
-  //gap: 4rem;
 `;
