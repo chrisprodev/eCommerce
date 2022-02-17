@@ -11,6 +11,8 @@ import { useAppSelector } from "../../store/hooks";
 import { showMenu } from "../../features/app/appSlice";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { Size } from "../../models/Hooks";
+import { motion } from "framer-motion";
+import { fadeUp, stagger } from "../../constants/animations";
 
 const Home: React.FC = () => {
   const menuStatus = useAppSelector(showMenu);
@@ -22,18 +24,22 @@ const Home: React.FC = () => {
       {size && size.width && size.width < 1280 && menuStatus ? (
         <MobileMenu />
       ) : (
-        <>
+        <motion.div initial="initial" animate="animate" exit="exit">
           <Styles.Header>
-            <Styles.Hero>
-              <h1>Create your perfect sound system</h1>
-              <Link to="/category/audio">
-                <span>Shop Now</span>
-              </Link>
+            <Styles.Hero variants={stagger}>
+              <motion.h1 variants={fadeUp}>
+                Create your perfect sound system
+              </motion.h1>
+              <motion.div variants={fadeUp}>
+                <Link to="/category/audio">
+                  <span>Shop Now</span>
+                </Link>
+              </motion.div>
             </Styles.Hero>
           </Styles.Header>
           <Categories />
           <ProductsList name="New Arrivals" categoryID={1} />
-          <Styles.FeatContainer>
+          <Styles.FeatContainer variants={fadeUp}>
             <h2>Why people choose us</h2>
             <Styles.Features>
               {features.map((feat) => (
@@ -111,7 +117,7 @@ const Home: React.FC = () => {
             </Styles.NavButtons>
           </Styles.Testimonials>
           <Footer />
-        </>
+        </motion.div>
       )}
     </>
   );

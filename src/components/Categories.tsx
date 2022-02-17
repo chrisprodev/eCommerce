@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { categories } from "../constants/mockData";
 import CategoryIcon from "./CategoryIcon";
 import Slider from "react-slick";
+import { motion } from "framer-motion";
 import "slick-carousel/slick/slick.css";
+import { fadeUp, stagger } from "../constants/animations";
 
 const Categories: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
@@ -18,8 +20,8 @@ const Categories: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Header>
+    <Container variants={stagger}>
+      <Header variants={fadeUp}>
         <h2>Browse by category</h2>
         <NavButtons>
           <span
@@ -70,7 +72,7 @@ const Categories: React.FC = () => {
           </span>
         </NavButtons>
       </Header>
-      <HorizontalScroll>
+      <HorizontalScroll variants={fadeUp}>
         <Slider ref={sliderRef} {...settings}>
           {categories.map((category) => (
             <CategoryIcon
@@ -88,7 +90,7 @@ const Categories: React.FC = () => {
 
 export default Categories;
 
-const Container = styled.section`
+const Container = styled(motion.section)`
   width: 100%;
   max-width: 126rem;
   margin: 0 auto;
@@ -101,7 +103,7 @@ const Container = styled.section`
   }
 `;
 
-const Header = styled.div`
+const Header = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -132,6 +134,6 @@ const NavButtons = styled.div`
   }
 `;
 
-const HorizontalScroll = styled.div`
+const HorizontalScroll = styled(motion.div)`
   margin-top: 4rem;
 `;

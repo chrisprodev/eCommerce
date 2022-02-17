@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Header = styled.header`
   height: 80rem;
@@ -11,7 +12,7 @@ export const Header = styled.header`
   align-items: center;
 `;
 
-export const Hero = styled.div`
+export const Hero = styled(motion.div)`
   width: 100%;
   max-width: 126rem;
   margin: 0 auto;
@@ -48,7 +49,7 @@ export const Hero = styled.div`
   }
 `;
 
-export const FeatContainer = styled.section`
+export const FeatContainer = styled(motion.section)`
   max-width: 126rem;
   margin: 0 auto;
   padding-top: 19rem;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { fadeUp, stagger } from "../constants/animations";
 import {
   fetchProductsList,
   selectProductList,
@@ -32,7 +34,13 @@ const ProductsList: React.FC<props> = ({ name, categoryID }) => {
   };
 
   return (
-    <Container padding={isHome}>
+    <Container
+      padding={isHome}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={fadeUp}
+    >
       {name && <h2>{name}</h2>}
       <ProductsWrapper>
         {products &&
@@ -59,7 +67,7 @@ const ProductsList: React.FC<props> = ({ name, categoryID }) => {
 
 export default ProductsList;
 
-const Container = styled.section<{ padding: boolean }>`
+const Container = styled(motion.section)<{ padding: boolean }>`
   display: flex;
   flex-direction: column;
   max-width: 126rem;
