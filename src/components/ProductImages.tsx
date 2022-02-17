@@ -13,6 +13,7 @@ const ProductImages: React.FC<props> = ({ images }) => {
       <Thumbnails>
         {images.map((image, i) => (
           <span
+            key={image}
             className={
               mainImg === i ? "images-container__thumbnails--active" : ""
             }
