@@ -25,7 +25,7 @@ const Home: React.FC = () => {
         <MobileMenu />
       ) : (
         <motion.div initial="initial" animate="animate" exit="exit">
-          <Styles.Header>
+          <Styles.Header exit={{ opacity: 0 }}>
             <Styles.Hero variants={stagger}>
               <motion.h1 variants={fadeUp}>
                 Create your perfect sound system

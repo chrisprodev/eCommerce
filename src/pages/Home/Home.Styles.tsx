@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const Header = styled.header`
+export const Header = styled(motion.header)`
   height: 80rem;
   background-image: url("images/banner@2x.png"); /* The image used */
   background-color: var(--black);
