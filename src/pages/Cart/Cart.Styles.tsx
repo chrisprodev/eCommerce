@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const Header = styled.header`
+export const Header = styled(motion.header)`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,7 +40,7 @@ export const Header = styled.header`
   }
 `;
 
-export const CartWrapper = styled.section`
+export const CartWrapper = styled(motion.section)`
   display: flex;
   justify-content: space-between;
   max-width: 126rem;
@@ -52,14 +53,14 @@ export const CartWrapper = styled.section`
   }
 `;
 
-export const CartItems = styled.div`
+export const CartItems = styled(motion.div)`
   width: 60%;
   @media screen and (max-width: 1280px) {
     width: auto;
   }
 `;
 
-export const CartDetailsWrap = styled.div`
+export const CartDetailsWrap = styled(motion.div)`
   width: 40%;
   margin-left: 2rem;
   @media screen and (max-width: 1280px) {

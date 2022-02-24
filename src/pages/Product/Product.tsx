@@ -46,6 +46,7 @@ const Product: React.FC = () => {
             <Styles.Header>
               {productData && (
                 <motion.div
+                  key="productHeader"
                   initial="initial"
                   animate="animate"
                   variants={fadeUp}
