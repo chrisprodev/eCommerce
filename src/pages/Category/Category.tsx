@@ -15,6 +15,7 @@ import {
 import MobileMenu from "../../components/MobileMenu";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import { Size } from "../../models/Hooks";
+import { fadeUp } from "../../constants/animations";
 
 const Category: React.FC = () => {
   const [catName, setCatName] = useState("");
@@ -51,14 +52,24 @@ const Category: React.FC = () => {
         <MobileMenu />
       ) : (
         <>
-          <Styles.Header>
+          <Styles.Header
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={fadeUp}
+          >
             <h2>
               {catName === "New Arrivals"
                 ? `Explorer ${_.startCase(_.capitalize(catName))}`
                 : `Explorer ${_.startCase(_.capitalize(catName))} Products`}
             </h2>
           </Styles.Header>
-          <Styles.Filters>
+          <Styles.Filters
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={fadeUp}
+          >
             <Dropdown
               list={categories}
               value={catName}

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { motion } from "framer-motion";
-import { fadeUp, stagger } from "../constants/animations";
+import { AnimatePresence, motion } from "framer-motion";
+import { fadeUp } from "../constants/animations";
 import {
   fetchProductsList,
   selectProductList,
@@ -34,40 +34,53 @@ const ProductsList: React.FC<props> = ({ name, categoryID }) => {
   };
 
   return (
-    <Container
-      padding={isHome}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={fadeUp}
-    >
+    <Container padding={isHome}>
       {name && <h2>{name}</h2>}
-      <ProductsWrapper>
-        {products &&
-          products.map((product) => (
-            <Product
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              img={product.images[0]}
-              price={product.price}
-            />
-          ))}
-      </ProductsWrapper>
-      {isHome && (
-        <CenterBTN>
-          <Link to="/products/new-arrivals" onClick={() => handleSetCategory()}>
-            <span>View all</span>
-          </Link>
-        </CenterBTN>
-      )}
+      <AnimatePresence exitBeforeEnter>
+        <ProductsWrapper>
+          {products &&
+            products.map((product) => (
+              <motion.div
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={fadeUp}
+              >
+                <Product
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  img={product.images[0]}
+                  price={product.price}
+                />
+              </motion.div>
+            ))}
+        </ProductsWrapper>
+        {isHome && (
+          <motion.div
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={fadeUp}
+          >
+            <CenterBTN>
+              <Link
+                to="/products/new-arrivals"
+                onClick={() => handleSetCategory()}
+              >
+                <span>View all</span>
+              </Link>
+            </CenterBTN>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Container>
   );
 };
 
 export default ProductsList;
 
-const Container = styled(motion.section)<{ padding: boolean }>`
+const Container = styled.section<{ padding: boolean }>`
   display: flex;
   flex-direction: column;
   max-width: 126rem;
@@ -80,7 +93,7 @@ const Container = styled(motion.section)<{ padding: boolean }>`
   }
 `;
 
-const ProductsWrapper = styled.div`
+const ProductsWrapper = styled(motion.div)`
   padding-bottom: 7rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);

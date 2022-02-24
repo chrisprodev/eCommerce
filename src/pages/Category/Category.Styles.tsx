@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const Header = styled.header`
+export const Header = styled(motion.header)`
   height: 20rem;
   max-width: 126rem;
   margin: 0 auto;
@@ -13,7 +14,7 @@ export const Header = styled.header`
   }
 `;
 
-export const Filters = styled.section`
+export const Filters = styled(motion.section)`
   max-width: 126rem;
   margin: 0 auto;
   padding-top: 6rem;
