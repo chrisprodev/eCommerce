@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as Styles from "./Checkout.Styles";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useWindowSize } from "../../hooks/useWindowSize";
+import { Size } from "../../models/Hooks";
+import MobileMenu from "../../components/MobileMenu";
+import PaymentForm from "../../components/PaymentForm";
 import {
   removeFromCart,
   selectItems,
   selectTotalPrice,
   showMenu,
 } from "../../features/app/appSlice";
-import { useWindowSize } from "../../hooks/useWindowSize";
-import { Size } from "../../models/Hooks";
-import MobileMenu from "../../components/MobileMenu";
-import PaymentForm from "../../components/PaymentForm";
 
 const Checkout: React.FC = () => {
   const items = useAppSelector(selectItems);
@@ -21,6 +21,11 @@ const Checkout: React.FC = () => {
   const dispatch = useAppDispatch();
   const menuStatus = useAppSelector(showMenu);
   const size: Size = useWindowSize();
+  let history = useHistory();
+
+  useEffect(() => {
+    items.length === 0 && history.push("/cart");
+  });
 
   const handleRemoveItem = (itemID: string) => {
     dispatch(removeFromCart(itemID));
