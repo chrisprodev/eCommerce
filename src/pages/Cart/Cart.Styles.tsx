@@ -269,3 +269,53 @@ export const Total = styled.div`
     }
   }
 `;
+
+export const EmptyCart = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 6rem 0;
+
+  h4 {
+    font-size: 2.4rem;
+    margin: 4rem 0 0 0;
+  }
+
+  p {
+    color: var(--black-mid);
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 3rem;
+    max-width: 30rem;
+  }
+
+  a {
+    color: #ffffff;
+    background: var(--purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5.4rem;
+    font-weight: 500;
+    height: 4.4rem;
+    width: 14rem;
+    font-size: 1.8rem;
+    margin-top: 1.8rem;
+    transition: all 150ms cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    :hover {
+      background: var(--purple-hover);
+    }
+  }
+
+  svg {
+    width: 25%;
+  }
+
+  @media screen and (max-width: 1280px) {
+    svg {
+      width: 50%;
+    }
+  }
+`;
