@@ -177,7 +177,7 @@ const Cart: React.FC = () => {
                   </svg>
                   <h4>Oops! Your cart is empty!</h4>
                   <p>Looks like you haven't added anything to your cart yet</p>
-                  <Link to="/category">Shop Now</Link>
+                  <Link to="/products">Shop Now</Link>
                 </Styles.EmptyCart>
               )}
             </AnimatePresence>

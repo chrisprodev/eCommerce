@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Cleave from "cleave.js/react";
 import styled from "styled-components";
+import { fadeUp } from "../constants/animations";
+import { motion } from "framer-motion";
 
 const PaymentForm: React.FC<{ total: number }> = ({ total }) => {
   const [payment, setPayment] = useState(0);
   return (
-    <PaymentInfo>
+    <PaymentInfo variants={fadeUp}>
       <h5>Payment</h5>
       <span className="payment__method-title">Payment method</span>
       <OptionsWrapper>
@@ -77,7 +79,7 @@ const PaymentForm: React.FC<{ total: number }> = ({ total }) => {
 
 export default PaymentForm;
 
-const PaymentInfo = styled.div`
+const PaymentInfo = styled(motion.div)`
   border-radius: 1rem;
   background: var(--gray);
   padding: 3rem;

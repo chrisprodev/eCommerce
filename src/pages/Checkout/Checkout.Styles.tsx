@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const Header = styled.header`
+export const Header = styled(motion.header)`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,7 +40,7 @@ export const Header = styled.header`
   }
 `;
 
-export const CartWrapper = styled.section`
+export const CartWrapper = styled(motion.section)`
   display: flex;
 
   max-width: 126rem;
@@ -52,7 +53,7 @@ export const CartWrapper = styled.section`
   }
 `;
 
-export const CartItems = styled.div`
+export const CartItems = styled(motion.div)`
   margin-bottom: 5rem;
   flex-grow: 4;
 
