@@ -7,9 +7,9 @@ export const Header = styled(motion.header)`
   margin: 0 auto;
   display: flex;
   align-items: flex-end;
+  padding: 0 2rem;
 
   h2 {
-    //max-width: 44rem;
     line-height: 5.6rem;
   }
 `;
@@ -17,7 +17,8 @@ export const Header = styled(motion.header)`
 export const Filters = styled(motion.section)`
   max-width: 126rem;
   margin: 0 auto;
-  padding-top: 6rem;
+
+  padding: 6rem 2rem 0 2rem;
   display: flex;
   justify-content: space-between;
 `;

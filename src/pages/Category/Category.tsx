@@ -75,11 +75,11 @@ const Category: React.FC = () => {
               value={catName}
               onSetOption={handleSetCategory}
             />
-            <Dropdown
+            {/* <Dropdown
               list={sortBy}
               value={filter}
               onSetOption={handleSetFilter}
-            />
+            /> */}
           </Styles.Filters>
           <ProductsList categoryID={idCategory} />
           <Footer />
