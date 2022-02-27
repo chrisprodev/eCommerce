@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { showMenu } from "../features/app/appSlice";
-import { useAppSelector } from "../store/hooks";
+import { showMenu, showMobileMenu } from "../features/app/appSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { categories as categoriesData } from "../constants/mockData";
 
 const MobileMenu: React.FC<{}> = () => {
   const menuStatus = useAppSelector(showMenu);
+  const dispatch = useAppDispatch();
   const [categories, openCategories] = useState(false);
 
   return (
@@ -38,11 +39,14 @@ const MobileMenu: React.FC<{}> = () => {
         </CategoryMenu>
         <CategoryList open={categories}>
           {categoriesData.map((cat) => (
-            <Link to="/products">{cat.name}</Link>
+            <Link to="/products" onClick={() => dispatch(showMobileMenu())}>
+              {cat.name}
+            </Link>
           ))}
         </CategoryList>
-        <Link to="/cart">Cart</Link>
-        <Link to="/">Account</Link>
+        <Link to="/cart" onClick={() => dispatch(showMobileMenu())}>
+          Cart
+        </Link>
       </BlockOne>
       <BlockTwo>
         <span>Facebook</span>

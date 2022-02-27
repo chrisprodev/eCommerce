@@ -35,7 +35,7 @@ const Navbar: React.FC<{}> = () => {
   return (
     <MainContainer sticky={show} animation={animation} menu={menuStatus}>
       <Container sticky={show} animation={animation} menu={menuStatus}>
-        <Link to="/">
+        <Link to="/" onClick={() => dispatch(showMobileMenu())}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             // width="114px"
