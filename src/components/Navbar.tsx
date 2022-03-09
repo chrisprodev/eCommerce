@@ -36,12 +36,7 @@ const Navbar: React.FC<{}> = () => {
     <MainContainer sticky={show} animation={animation} menu={menuStatus}>
       <Container sticky={show} animation={animation} menu={menuStatus}>
         <Link to="/" onClick={() => dispatch(showMobileMenu())}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            // width="114px"
-            // height="35px"
-            viewBox="0 0 114 35"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 35">
             <text
               id="T-Market"
               transform="translate(0 28)"

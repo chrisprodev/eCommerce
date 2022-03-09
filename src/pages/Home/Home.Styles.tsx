@@ -3,11 +3,7 @@ import { motion } from "framer-motion";
 
 export const Header = styled(motion.header)`
   height: 80rem;
-  background-image: url("images/banner@2x.png"); /* The image used */
-  background-color: var(--black);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #000;
   display: flex;
   align-items: center;
 `;
@@ -16,17 +12,27 @@ export const Hero = styled(motion.div)`
   width: 100%;
   max-width: 126rem;
   margin: 0 auto;
-  padding-top: 5rem;
+  padding-top: 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const HeroDesc = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 
   h1 {
-    max-width: 61.4rem;
-    line-height: 5.6rem;
+    font-size: 3.2rem;
+    line-height: 4.4rem;
+    font-weight: 600;
     text-align: center;
     color: #ffffff;
-    text-transform: uppercase;
+
+    span {
+      display: block;
+    }
   }
 
   a {

@@ -27,14 +27,20 @@ const Home: React.FC = () => {
         <motion.div initial="initial" animate="animate" exit="exit">
           <Styles.Header exit={{ opacity: 0 }}>
             <Styles.Hero variants={stagger}>
-              <motion.h1 variants={fadeUp}>
-                Create your perfect sound system
-              </motion.h1>
-              <motion.div variants={fadeUp}>
-                <Link to="/category/audio">
-                  <span>Shop Now</span>
-                </Link>
-              </motion.div>
+              <img src="./images/banner.png" alt="" />
+              <Styles.HeroDesc>
+                <motion.h1 variants={fadeUp}>
+                  <span>Supercharged by the Apple M1 chip.</span>
+                  <span>12MP Ultra Wide front camera</span>
+                  <span>with Center Stage. Blazing‑fast 5G.</span>
+                  <span>Five gorgeous colors.</span>
+                </motion.h1>
+                <motion.div variants={fadeUp}>
+                  <Link to="/product/bkh7Q2UmAAhKmjGqxxNy">
+                    <span>Shop Now</span>
+                  </Link>
+                </motion.div>
+              </Styles.HeroDesc>
             </Styles.Hero>
           </Styles.Header>
           <Categories />
