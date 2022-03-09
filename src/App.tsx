@@ -6,6 +6,7 @@ import Product from "./pages/Product/Product";
 import Cart from "./pages/Cart/Cart";
 import Checkout from "./pages/Checkout/Checkout";
 import { AnimatePresence } from "framer-motion";
+import Layout from "./components/Layout";
 
 const App: React.FC = () => {
   return (
@@ -15,19 +16,29 @@ const App: React.FC = () => {
           <AnimatePresence exitBeforeEnter>
             <Switch location={location} key={location.pathname}>
               <Route path="/products">
-                <Category />
+                <Layout>
+                  <Category />
+                </Layout>
               </Route>
               <Route path="/product/:id">
-                <Product />
+                <Layout>
+                  <Product />
+                </Layout>
               </Route>
               <Route path="/cart">
-                <Cart />
+                <Layout>
+                  <Cart />
+                </Layout>
               </Route>
               <Route path="/checkout">
-                <Checkout />
+                <Layout>
+                  <Checkout />
+                </Layout>
               </Route>
               <Route path="/">
-                <Home />
+                <Layout>
+                  <Home />
+                </Layout>
               </Route>
             </Switch>
           </AnimatePresence>

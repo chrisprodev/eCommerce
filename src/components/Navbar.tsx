@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { navBarProps } from "../models/NavBar";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
   selectTotalItems,
   showMobileMenu,
   showMenu,
 } from "../features/app/appSlice";
-import { navBarProps } from "../models/NavBar";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
 
 const Navbar: React.FC<{}> = () => {
   const [show, setShow] = useState(false);
