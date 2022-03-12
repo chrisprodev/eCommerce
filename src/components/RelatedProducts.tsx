@@ -18,7 +18,8 @@ const RelatedProducts: React.FC<props> = ({ categoryID }) => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow:
+      products && products.length > 4 ? 4 : products && products.length,
     slidesToScroll: 1,
     arrows: false,
     draggable: false,
@@ -26,14 +27,16 @@ const RelatedProducts: React.FC<props> = ({ categoryID }) => {
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 3,
+          slidesToShow:
+            products && products.length > 3 ? 3 : products && products.length,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: 2,
+          slidesToShow:
+            products && products.length > 2 ? 2 : products && products.length,
           slidesToScroll: 1,
         },
       },

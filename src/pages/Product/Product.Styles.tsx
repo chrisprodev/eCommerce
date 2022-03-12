@@ -8,8 +8,15 @@ export const Header = styled(motion.header)`
   margin: 0 auto;
   padding-top: 16rem;
 
+  .header-wrapper {
+    display: flex;
+
+    @media screen and (max-width: 1280px) {
+      flex-direction: column;
+    }
+  }
+
   @media screen and (max-width: 1280px) {
-    flex-direction: column;
     max-width: 58rem;
   }
 

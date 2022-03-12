@@ -23,7 +23,7 @@ export const fetchProductsList = createAsyncThunk(
       if (categoryID === 1) {
         const q = query(
           collection(db, "products"),
-          orderBy("created"),
+          orderBy("created", "desc"),
           limit(show)
         );
 

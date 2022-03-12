@@ -37,7 +37,7 @@ const Product: React.FC = () => {
               initial="initial"
               animate="animate"
               variants={fadeUp}
-              style={{ display: "flex" }}
+              className="header-wrapper"
             >
               <ProductImages images={productData.images} />
               <Styles.Details>

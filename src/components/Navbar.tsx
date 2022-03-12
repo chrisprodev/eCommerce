@@ -35,7 +35,7 @@ const Navbar: React.FC<{}> = () => {
   return (
     <MainContainer sticky={show} animation={animation}>
       <Container sticky={show} animation={animation}>
-        <Link to="/" onClick={() => dispatch(showMobileMenu())}>
+        <Link to="/" onClick={() => menuStatus && dispatch(showMobileMenu())}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 35">
             <text
               id="T-Market"

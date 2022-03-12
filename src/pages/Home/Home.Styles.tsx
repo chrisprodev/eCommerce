@@ -6,6 +6,11 @@ export const Header = styled(motion.header)`
   background-color: #000;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 1280px) {
+    height: auto;
+    padding: 8rem 0;
+  }
 `;
 
 export const Hero = styled(motion.div)`
@@ -16,6 +21,18 @@ export const Hero = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  img {
+    width: 50%;
+  }
+
+  @media screen and (max-width: 1280px) {
+    padding-top: 5rem;
+    flex-direction: column;
+    img {
+      width: 60%;
+    }
+  }
 `;
 
 export const HeroDesc = styled.div`
@@ -56,6 +73,19 @@ export const HeroDesc = styled.div`
 
     :hover {
       background: var(--purple-hover);
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
+    padding: 0 3rem;
+    img {
+      width: 40%;
+      margin-top: 6rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      line-height: 3rem;
     }
   }
 `;
