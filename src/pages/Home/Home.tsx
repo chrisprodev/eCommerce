@@ -13,16 +13,17 @@ const Home: React.FC = () => {
       <motion.div initial="initial" animate="animate" exit="exit">
         <Styles.Header exit={{ opacity: 0 }}>
           <Styles.Hero variants={stagger}>
-            <img src="./images/banner.png" alt="" />
+            <img src="./images/banner.png" alt="Ipad Air M1" />
             <Styles.HeroDesc>
               <motion.h1 variants={fadeUp}>
+                <img src="./images/logo_ipadair.png" alt="logo Ipad Air" />
                 <span>Supercharged by the Apple M1 chip.</span>
                 <span>12MP Ultra Wide front camera</span>
                 <span>with Center Stage. Blazing‑fast 5G.</span>
                 <span>Five gorgeous colors.</span>
               </motion.h1>
               <motion.div variants={fadeUp}>
-                <Link to="/product/bkh7Q2UmAAhKmjGqxxNy">
+                <Link to="/product/2QDxXauG13xYX1Ry52q2">
                   <span>Shop Now</span>
                 </Link>
               </motion.div>

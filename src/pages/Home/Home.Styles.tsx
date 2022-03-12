@@ -23,6 +23,11 @@ export const HeroDesc = styled.div`
   flex-direction: column;
   align-items: center;
 
+  img {
+    width: 22rem;
+    margin-bottom: 3rem;
+  }
+
   h1 {
     font-size: 3.2rem;
     line-height: 4.4rem;

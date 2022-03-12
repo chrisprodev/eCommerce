@@ -20,7 +20,6 @@ interface props {
 
 const CategoryIcon: React.FC<props> = ({ id, name }) => {
   const [hover, setHover] = useState(false);
-
   const dispatch = useAppDispatch();
 
   const handleSetCategory = () => {
