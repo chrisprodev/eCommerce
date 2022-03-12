@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { navBarProps } from "../models/NavBar";
+import { navBarContProps } from "../models/NavBar";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
   selectTotalItems,
@@ -33,8 +33,8 @@ const Navbar: React.FC<{}> = () => {
   };
 
   return (
-    <MainContainer sticky={show} animation={animation} menu={menuStatus}>
-      <Container sticky={show} animation={animation} menu={menuStatus}>
+    <MainContainer sticky={show} animation={animation}>
+      <Container sticky={show} animation={animation}>
         <Link to="/" onClick={() => dispatch(showMobileMenu())}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 114 35">
             <text
@@ -105,25 +105,23 @@ const Navbar: React.FC<{}> = () => {
 
 export default Navbar;
 
-const MainContainer = styled.nav<navBarProps>`
+const MainContainer = styled.nav<navBarContProps>`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 999;
-  transition: ${({ menu }) => (menu ? "none" : "all 450ms ease")};
+  transition: all 450ms ease;
   background-color: ${({ sticky }) => (sticky ? "#ffffff" : "transparent")};
-  border-bottom: ${({ menu, animation, sticky }) =>
-    menu
-      ? "none"
-      : animation
+  border-bottom: ${({ animation, sticky }) =>
+    animation
       ? sticky
         ? "solid 2px var(--gray)"
         : "none"
       : "solid 2px var(--gray)"};
 `;
 
-const Container = styled.div<navBarProps>`
+const Container = styled.div<navBarContProps>`
   position: relative;
   z-index: 2;
   display: flex;
@@ -133,8 +131,8 @@ const Container = styled.div<navBarProps>`
   margin: 0 auto;
   padding: 0 2rem;
   transition: all 450ms ease;
-  height: ${({ menu, animation, sticky }) =>
-    menu ? "8rem" : animation ? (sticky ? "8rem" : "10rem") : "8rem"};
+  height: ${({ animation, sticky }) =>
+    animation ? (sticky ? "8rem" : "10rem") : "8rem"};
 
   a {
     display: flex;
@@ -169,8 +167,7 @@ const Container = styled.div<navBarProps>`
   svg {
     width: 114px;
     cursor: pointer;
-    color: ${({ menu, animation, sticky }) =>
-      !menu && animation && !sticky && "#ffffff"};
+    color: ${({ animation, sticky }) => animation && !sticky && "#ffffff"};
     transition: all 450ms ease;
   }
 

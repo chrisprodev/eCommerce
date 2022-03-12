@@ -1,5 +1,4 @@
-export interface navBarProps {
-  menu: boolean;
+export interface navBarContProps {
   sticky: boolean;
   animation: boolean;
 }
