@@ -53,7 +53,7 @@ const Category: React.FC = () => {
           onSetOption={handleSetCategory}
         />
       </Styles.Filters>
-      <ProductsList categoryID={idCategory} />
+      <ProductsList categoryID={idCategory} show={16} />
     </>
   );
 };

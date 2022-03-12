@@ -14,18 +14,17 @@ import {
   orderBy,
   limit,
 } from "firebase/firestore";
-import { Item } from "../../pages/Cart/Cart.Styles";
 
 // Fecth Product List
 export const fetchProductsList = createAsyncThunk(
   "products/fetchProductsList",
-  async (categoryID: number) => {
+  async ({ categoryID, show }: { categoryID: number; show: number }) => {
     try {
       if (categoryID === 1) {
         const q = query(
           collection(db, "products"),
           orderBy("created"),
-          limit(12)
+          limit(show)
         );
 
         const querySnapshot = await getDocs(q);

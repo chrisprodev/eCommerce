@@ -31,7 +31,7 @@ const Home: React.FC = () => {
           </Styles.Hero>
         </Styles.Header>
         <Categories />
-        <ProductsList name="New Arrivals" categoryID={1} />
+        <ProductsList name="New Arrivals" categoryID={1} show={12} />
         <Styles.FeatContainer variants={fadeUp}>
           <h2>Why people choose us</h2>
           <Styles.Features>

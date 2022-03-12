@@ -41,7 +41,8 @@ const RelatedProducts: React.FC<props> = ({ categoryID }) => {
   };
 
   useEffect(() => {
-    dispatch(fetchProductsList(parseInt(categoryID)));
+    const fetchParams = { categoryID: parseInt(categoryID), show: 4 };
+    dispatch(fetchProductsList(fetchParams));
   }, [dispatch, categoryID]);
 
   return (

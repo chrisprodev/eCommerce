@@ -14,9 +14,10 @@ import Product from "./Product";
 interface props {
   name?: string;
   categoryID: number;
+  show: number;
 }
 
-const ProductsList: React.FC<props> = ({ name, categoryID }) => {
+const ProductsList: React.FC<props> = ({ name, categoryID, show }) => {
   const [isHome, setIsHome] = useState(true);
   const dispatch = useAppDispatch();
   const products = useAppSelector(selectProductList);
@@ -26,8 +27,8 @@ const ProductsList: React.FC<props> = ({ name, categoryID }) => {
       setIsHome(false);
     }
 
-    dispatch(fetchProductsList(categoryID));
-  }, [dispatch, categoryID]);
+    dispatch(fetchProductsList({ categoryID, show }));
+  }, [dispatch, categoryID, show]);
 
   const handleSetCategory = () => {
     dispatch(setCategory(1));
