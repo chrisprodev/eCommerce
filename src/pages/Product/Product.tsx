@@ -97,7 +97,7 @@ const Product: React.FC = () => {
             ))}
         </Styles.FeatContainer>
         {/* Related Products Carousel */}
-        {productData && <RelatedProducts categoryID={productData.categoryID} />}
+        {/* {productData && <RelatedProducts categoryID={productData.categoryID} />} */}
       </AnimatePresence>
     </>
   );

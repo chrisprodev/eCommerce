@@ -116,10 +116,12 @@ export const FeatContainer = styled.section`
   max-width: 126rem;
   margin: 0 auto;
   margin-top: 10rem;
+  margin-bottom: 10rem;
   padding: 0 3rem;
 
   @media screen and (max-width: 1280px) {
     margin-top: 4rem;
+    margin-bottom: 4rem;
   }
 `;
 
