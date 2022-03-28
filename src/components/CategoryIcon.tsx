@@ -11,6 +11,8 @@ import CameraIcon from "../icons/CameraIcon";
 import StarIcon from "../icons/StarIcon";
 import { useAppDispatch } from "../store/hooks";
 import { setCategory } from "../features/app/appSlice";
+import FilmIcon from "../icons/FilmIcon";
+import AccesoriesIcons from "../icons/AccesoriesIcons";
 
 interface props {
   id: number;
@@ -42,6 +44,8 @@ const CategoryIcon: React.FC<props> = ({ id, name }) => {
         {name === "Mobile" && <MobileIcon hover={hover} />}
         {name === "Drones" && <DroneIcon hover={hover} />}
         {name === "Audio" && <AudioIcon hover={hover} />}
+        {name === "Film" && <FilmIcon hover={hover} />}
+        {name === "Accesories" && <AccesoriesIcons hover={hover} />}
         <p>{name}</p>
       </Link>
     </Container>

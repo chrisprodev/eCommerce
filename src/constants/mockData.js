@@ -42,12 +42,12 @@ export const categories = [
   {
     id: 9,
     name: "Film",
-    icon: "6",
+    icon: "film",
   },
   {
     id: 10,
     name: "Accesories",
-    icon: "10",
+    icon: "acc",
   },
 ];
 
