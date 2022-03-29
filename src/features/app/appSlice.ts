@@ -16,6 +16,29 @@ import {
 } from "firebase/firestore";
 
 // Fecth Product List
+export const searchProducts = createAsyncThunk(
+  "products/searchProducts",
+  async ({ input }: { input: string }) => {
+    try {       
+        const q = query(
+          collection(db, "products"),
+          where('name', '>=', input)
+        );
+
+        const querySnapshot = await getDocs(q);
+        return querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as productInterface[];
+      }
+     catch (error) {
+      console.log(error);
+    }  
+  }
+);
+
+
+// Fecth Product List
 export const fetchProductsList = createAsyncThunk(
   "products/fetchProductsList",
   async ({ categoryID, show }: { categoryID: number; show: number }) => {
@@ -83,6 +106,7 @@ const initialState: AppState = {
   cart: [],
   productList: [],
   product: undefined,
+  results:[],
 };
 
 export const appSlice = createSlice({
@@ -127,6 +151,10 @@ export const appSlice = createSlice({
     builder.addCase(fetchProduct.fulfilled, (state, action) => {
       state.product = action.payload;
     });
+    //* searchProducts Status
+    builder.addCase(searchProducts.fulfilled, (state, action) => {
+      state.results = action.payload;
+    });
   },
 });
 
@@ -154,6 +182,7 @@ export const selectTotalPrice = (state: RootState) =>
 
 export const selectCategory = (state: RootState) => state.app.category;
 export const selectProductList = (state: RootState) => state.app.productList;
+export const selectResults = (state: RootState) => state.app.results;
 export const selectProduct = (state: RootState) => state.app.product;
 export const showMenu = (state: RootState) => state.app.mobile;
 

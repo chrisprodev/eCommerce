@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import * as Styles from "./Product.Styles";
 import { useParams } from "react-router-dom";
-import RelatedProducts from "../../components/RelatedProducts";
 import { ProductActions } from "../../components/ProductActions";
 import ProductImages from "../../components/ProductImages";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,6 +11,7 @@ import {
   selectProduct,
 } from "../../features/app/appSlice";
 import { fadeUp } from "../../constants/animations";
+//import RelatedProducts from "../../components/RelatedProducts";
 
 interface productParams {
   id: string;

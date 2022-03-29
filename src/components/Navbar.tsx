@@ -8,6 +8,7 @@ import {
   showMobileMenu,
   showMenu,
 } from "../features/app/appSlice";
+import Search from "./Search";
 
 const Navbar: React.FC<{}> = () => {
   const [show, setShow] = useState(false);
@@ -51,11 +52,7 @@ const Navbar: React.FC<{}> = () => {
             </text>
           </svg>
         </Link>
-        <input
-          className="navbar__search"
-          type="text"
-          placeholder="Search items..."
-        />
+        <Search sticky={show} animation={animation} />
         <Icons>
           <Link to="/cart">
             <CartContainer>
