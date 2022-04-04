@@ -8,12 +8,15 @@ interface Props {
 }
 
 type Inputs = {
-  searchInput: string;
+  input: string;
 };
 
 const Search: React.FC<Props> = ({ animation, sticky }) => {
   const { register, handleSubmit } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
+  };
 
   return (
     <Container
@@ -25,7 +28,7 @@ const Search: React.FC<Props> = ({ animation, sticky }) => {
         className="navbar__search"
         type="text"
         placeholder="Search items..."
-        {...register("searchInput", { required: true })}
+        {...register("input", { required: true })}
       />
     </Container>
   );

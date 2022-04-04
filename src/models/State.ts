@@ -16,5 +16,4 @@ export interface AppState {
   cart: CartInterface[];
   productList: productInterface[] | undefined;
   product: productInterface | undefined;
-  results:productInterface[] | undefined;
 }
